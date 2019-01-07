@@ -19,7 +19,6 @@ public final class SphereMathCalc {
             log.error(NULL_SPHERE_EXC_MESSAGE);
             throw new MathCalcException(NULL_SPHERE_EXC_MESSAGE);
         }
-        sphere.findVolume();
 
         return Math.PI * 4 / 3 * Math.pow(sphere.getRad(), 3);
     }
