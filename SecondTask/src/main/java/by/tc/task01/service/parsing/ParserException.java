@@ -1,4 +1,4 @@
-package main.java.by.tc.task01.service.exceptions;
+package main.java.by.tc.task01.service.parsing;
 
 
 public class ParserException extends Exception{

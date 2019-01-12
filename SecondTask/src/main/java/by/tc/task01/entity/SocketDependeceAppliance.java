@@ -5,12 +5,24 @@
  */
 package main.java.by.tc.task01.entity;
 
-public class SocketDependeceAppliance extends Appliance {
+public abstract class SocketDependeceAppliance extends Appliance {
 
     private int powerConsumption;
 
+    SocketDependeceAppliance() {
+
+    }
+
     SocketDependeceAppliance(int powerConsumption) {
         this.powerConsumption = powerConsumption;
+    }
+
+    public void setPowerConsumption(int powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public int getPowerConsumption() {
+        return powerConsumption;
     }
 
     @Override
@@ -41,10 +53,6 @@ public class SocketDependeceAppliance extends Appliance {
             return false;
         }
         return true;
-    }
-
-    public int getPowerConsumption() {
-        return powerConsumption;
     }
 
 }

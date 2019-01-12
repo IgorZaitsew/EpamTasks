@@ -10,6 +10,10 @@ public class VacuumCleaner extends SocketDependeceAppliance {
     private int motorSpeedRegulation;
     private int cleaningWidth;
 
+    public VacuumCleaner() {
+
+    }
+
     public VacuumCleaner(char filterType, String bagType, String wandType, int motorSpeedRegulation, int cleaningWidth, int powerConsumption) {
         super(powerConsumption);
         this.filterType = filterType;
@@ -17,6 +21,16 @@ public class VacuumCleaner extends SocketDependeceAppliance {
         this.wandType = wandType;
         this.motorSpeedRegulation = motorSpeedRegulation;
         this.cleaningWidth = cleaningWidth;
+    }
+
+    @Override
+    public void setData(String[] values) {
+        setPowerConsumption(Integer.parseInt(values[0]));
+        filterType = values[1].charAt(0);
+        bagType = values[2];
+        wandType = values[3];
+        motorSpeedRegulation = Integer.parseInt(values[4]);
+        cleaningWidth = Integer.parseInt(values[5]);
     }
 
     @Override
@@ -66,7 +80,7 @@ public class VacuumCleaner extends SocketDependeceAppliance {
 
     @Override
     public String toString() {
-        return "VacuumCleaner{" + super.toString() + "filterType=" + filterType + ", bagType=" + bagType + ", wandType=" + wandType + ", motorSpeedRegulation=" + motorSpeedRegulation + ", cleaningWidth=" + cleaningWidth + '}';
+        return "VacuumCleaner{" + super.toString() + ", filterType=" + filterType + ", bagType=" + bagType + ", wandType=" + wandType + ", motorSpeedRegulation=" + motorSpeedRegulation + ", cleaningWidth=" + cleaningWidth + '}';
     }
 
 }

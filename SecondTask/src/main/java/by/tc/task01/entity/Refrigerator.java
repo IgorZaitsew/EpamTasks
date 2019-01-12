@@ -3,18 +3,32 @@ package main.java.by.tc.task01.entity;
 public class Refrigerator extends SocketDependeceAppliance {
 
     private int weight;
-    private double freezerCapacity;
-    private double overallCapacity;
-    private double height;
-    private double width;
+    private float freezerCapacity;
+    private float overallCapacity;
+    private float height;
+    private float width;
 
-    public Refrigerator(int weight, double freezerCapacity, double overallCapacity, int height, int width, int powerConsumption) {
+    public Refrigerator() {
+
+    }
+
+    public Refrigerator(int weight, float freezerCapacity, float overallCapacity, int height, int width, int powerConsumption) {
         super(powerConsumption);
         this.weight = weight;
         this.freezerCapacity = freezerCapacity;
         this.overallCapacity = overallCapacity;
         this.height = height;
         this.width = width;
+    }
+
+    @Override
+    public void setData(String[] values) {
+        setPowerConsumption(Integer.parseInt(values[0]));
+        weight = Integer.parseInt(values[1]);
+        freezerCapacity = Float.parseFloat(values[2]);
+        overallCapacity = Float.parseFloat(values[3]);
+        height = Float.parseFloat(values[4]);
+        width = Float.parseFloat(values[5]);
     }
 
     @Override
@@ -64,7 +78,7 @@ public class Refrigerator extends SocketDependeceAppliance {
 
     @Override
     public String toString() {
-        return "Refrigerator{" + super.toString() + "weight=" + weight + ", freezerCapacity=" + freezerCapacity + ", overallCapacity=" + overallCapacity + ", height=" + height + ", width=" + width + '}';
+        return "Refrigerator{" + super.toString() + ", weight=" + weight + ", freezerCapacity=" + freezerCapacity + ", overallCapacity=" + overallCapacity + ", height=" + height + ", width=" + width + '}';
     }
 
 }

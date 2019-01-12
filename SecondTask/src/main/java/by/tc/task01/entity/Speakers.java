@@ -8,11 +8,23 @@ public class Speakers extends SocketDependeceAppliance {
     private String frequencyRange;
     private int coordLength;
 
+    public Speakers() {
+
+    }
+
     public Speakers(int numberOfSpeakers, String frequencyRange, int coordLength, int powerConsumption) {
         super(powerConsumption);
         this.numberOfSpeakers = numberOfSpeakers;
         this.frequencyRange = frequencyRange;
         this.coordLength = coordLength;
+    }
+
+    @Override
+    public void setData(String[] values) {
+        setPowerConsumption(Integer.parseInt(values[0]));
+        numberOfSpeakers = Integer.parseInt(values[1]);
+        frequencyRange = values[2];
+        coordLength = Integer.parseInt(values[3]);
     }
 
     @Override
@@ -54,7 +66,7 @@ public class Speakers extends SocketDependeceAppliance {
 
     @Override
     public String toString() {
-        return "Speakers{" + this.toString() + "numberOfSpeakers=" + numberOfSpeakers + ", frequencyRange=" + frequencyRange + ", coordLength=" + coordLength + '}';
+        return "Speakers{" + super.toString() + ", numberOfSpeakers=" + numberOfSpeakers + ", frequencyRange=" + frequencyRange + ", coordLength=" + coordLength + '}';
     }
 
 }

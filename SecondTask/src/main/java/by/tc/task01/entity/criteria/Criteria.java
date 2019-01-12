@@ -3,6 +3,8 @@ package main.java.by.tc.task01.entity.criteria;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Criteria<E> {
 
@@ -23,6 +25,10 @@ public class Criteria<E> {
     }
 
     public String productName() {
-        return e.getClass().getName().replaceAll(".*SearchCriteria", "").replace('$', ' ').replaceAll(" ", "");
+        return e.getClass().getName().replaceAll(".*SearchCriteria", "").replace('$', ' ').trim();
+    }
+
+    public Set<E> keySet() {
+        return criteria.keySet();
     }
 }

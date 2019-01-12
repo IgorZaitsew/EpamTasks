@@ -4,17 +4,31 @@ public class Oven extends SocketDependeceAppliance {
 
     private int weight;
     private int capacity;
-    private double depth;
-    private double height;
-    private double width;
+    private float depth;
+    private float height;
+    private float width;
 
-    public Oven(int weight, int capacity, int depth, int height, int width, int powerConsumption) {
+    public Oven(){
+        
+    }
+    
+    public Oven(int powerConsumption, int weight, int capacity, float depth, float height, float width) {
         super(powerConsumption);
         this.weight = weight;
         this.capacity = capacity;
         this.depth = depth;
         this.height = height;
         this.width = width;
+    }
+
+    @Override
+    public void setData(String[] values) {
+        setPowerConsumption(Integer.parseInt(values[0]));
+        weight = Integer.parseInt(values[1]);
+        capacity = Integer.parseInt(values[2]);
+        depth = Float.parseFloat(values[3]);
+        height = Float.parseFloat(values[4]);
+        width = Float.parseFloat(values[5]);
     }
 
     @Override
@@ -27,11 +41,6 @@ public class Oven extends SocketDependeceAppliance {
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.width) ^ (Double.doubleToLongBits(this.width) >>> 32));
         hash = 53 * hash + this.getPowerConsumption();
         return hash;
-    }
-
-    @Override
-    public String toString() {
-        return "Oven{" + super.toString() + "weight=" + weight + ", capacity=" + capacity + ", depth=" + depth + ", height=" + height + ", width=" + width + '}';
     }
 
     @Override
@@ -67,4 +76,8 @@ public class Oven extends SocketDependeceAppliance {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Oven{" + super.toString() + ", weight=" + weight + ", capacity=" + capacity + ", depth=" + depth + ", height=" + height + ", width=" + width + '}';
+    }
 }

@@ -6,9 +6,22 @@ public final class TabletPC extends Gadget {
 
     private String color;
 
+    public TabletPC() {
+
+    }
+
     public TabletPC(int displayInches, int batteryCapacity, int memoryRom, int memotySystem, String color) {
         super(displayInches, batteryCapacity, memoryRom, memotySystem);
         this.color = color;
+    }
+
+    @Override
+    public void setData(String[] values) {
+        setBatteryCapacity(Integer.parseInt(values[0]));
+        setDisplayInches(Integer.parseInt(values[1]));
+        setMemoryRom(Integer.parseInt(values[2]));
+        setMemorySystem(Integer.parseInt(values[3]));
+        color = values[4];
     }
 
     @Override
@@ -51,7 +64,7 @@ public final class TabletPC extends Gadget {
 
     @Override
     public String toString() {
-        return "TabletPC{" + super.toString() + "color=" + color + '}';
+        return "TabletPC{" + super.toString() + ", color=" + color.trim() + '}';
     }
 
 }

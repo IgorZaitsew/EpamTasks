@@ -3,15 +3,19 @@ package main.java.by.tc.task01.dao.impl;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.java.by.tc.task01.dao.ApplianceDAO;
 import main.java.by.tc.task01.entity.Appliance;
+import main.java.by.tc.task01.entity.Laptop;
+import main.java.by.tc.task01.entity.Oven;
+import main.java.by.tc.task01.entity.Refrigerator;
+import main.java.by.tc.task01.entity.Speakers;
+import main.java.by.tc.task01.entity.TabletPC;
+import main.java.by.tc.task01.entity.VacuumCleaner;
 import main.java.by.tc.task01.entity.criteria.Criteria;
-import main.java.by.tc.task01.entity.criteria.SearchCriteria;
-import main.java.by.tc.task01.entity.criteria.SearchCriteria.Oven;
-import main.java.by.tc.task01.service.exceptions.ParserException;
+import main.java.by.tc.task01.service.parsing.ParserException;
 import static main.java.by.tc.task01.service.parsing.Parser.parse;
-import static main.java.by.tc.task01.service.validation.Validator.criteriaValidator;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
 
@@ -24,15 +28,23 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         String productName = criteria.productName();
         try (BufferedReader reader = new BufferedReader(new FileReader(DB_PATH))) {
             String line;
+
             while ((line = parse(reader)) != null) {
                 if (line.replaceAll(" .*", "").matches(productName) && lineValidate(line)) {
                     String[][] dividedLine = divider(line);
-                    for (String[] appliance : dividedLine) {
-                        String key = appliance[0];              
-                        String value = criteria.getValue(key).toString();
+                    String[] values = new String[dividedLine.length];
+                    for (int i = 0; i < dividedLine.length; i++) {
+                        values[i] = dividedLine[i][1];
+                    }
+                    
+                    if (compareCriteriaWithDB(criteria, dividedLine)) {
+                        return DBtoAppl(values, productName);
                     }
                 }
             }
+
+        } catch (ApplianceDAOImplException ex) {
+            Logger.getLogger(ApplianceDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return null;
@@ -61,5 +73,52 @@ public class ApplianceDAOImpl implements ApplianceDAO {
             }
         }
         return count;
+    }
+
+    private <E> boolean compareCriteriaWithDB(Criteria<E> criteria, String[][] db) {
+        label:
+        for (E key : criteria.keySet()) {
+            for (String[] dbElem : db) {
+                if (key.toString().matches(dbElem[0])) {
+                    String value = criteria.getValue(key).toString();
+                    if (!value.trim().matches(dbElem[1].trim())) {
+                        return false;
+                    } else {
+                        continue label;
+                    }
+
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private Appliance DBtoAppl(String[] values, String productName) throws ApplianceDAOImplException {
+        Appliance appl;
+        switch (productName) {
+            case "Oven":
+                appl = new Oven();
+                break;
+            case "Laptop":
+                appl = new Laptop();
+                break;
+            case "Refrigerator":
+                appl = new Refrigerator();
+                break;
+            case "VacuumCleaner":
+                appl = new VacuumCleaner();
+                break;
+            case "TabletPC":
+                appl = new TabletPC();
+                break;
+            case "Speakers":
+                appl = new Speakers();
+                break;
+            default:
+                throw new ApplianceDAOImplException();
+        }
+        appl.setData(values);
+        return appl;
     }
 }
