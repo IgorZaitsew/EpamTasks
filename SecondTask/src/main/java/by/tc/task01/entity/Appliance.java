@@ -1,6 +1,9 @@
 package main.java.by.tc.task01.entity;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Appliance {
@@ -15,12 +18,17 @@ public class Appliance {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append(appName).append(" : ");
+        List<String> list = new ArrayList();
         for (Map.Entry<String, String> entry : appProps.entrySet()) {
-            sb.append(entry.getKey()).append("=").append(entry.getValue()).append(",");
+            list.add(entry.getKey() + "=" + entry.getValue());
         }
-        sb.delete(sb.length() - 1, sb.length());
-        return sb + "";
+        Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+        return appName + " : " + list.toString();
+    }
+
+    private void sortPropsByAlph(StringBuffer sb) {
+        for (String appProp : appProps.keySet()) {
+
+        }
     }
 }

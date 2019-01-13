@@ -18,22 +18,17 @@ public class ApplianceDAOImpl implements ApplianceDAO {
     public <E> Appliance find(Criteria<E> criteria) throws IOException, ParserException {
         String productName = criteria.productName();
         try (BufferedReader reader = new BufferedReader(new FileReader(DB_PATH))) {
-            String line;
             Parser parser = new Parser();
 
-            while (true) {
-                if (!parser.parse(reader, productName) || parser.isEmpty()) {
-                    continue;
+            while (parser.parse(reader)) {
+                if (parser.productName().matches(productName)) {
+                    Map<String, String> appProps = parser.getValues();
+                    if (compareCriteriaWithAppProps(criteria, appProps)) {
+                        return new Appliance(appProps, productName);
+                    }
                 }
-                if (parser.isNull()) {
-                    break;
-                }
-                Map<String, String> appProps = parser.getValues();
-                if (compareCriteriaWithAppProps(criteria, appProps)) {
-                    return new Appliance(appProps, productName);
-                }
-
             }
+
         }
         return null;
     }
