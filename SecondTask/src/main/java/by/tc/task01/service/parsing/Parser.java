@@ -13,6 +13,7 @@ public class Parser {
 
     private static final String WRONG_PATH = "Wrong database path";
     private static final String DIV_NAME_AND_VALUES = ":";
+    private static final String END_OF_LINE = ";";
     private static final String DIV_VALUES = ",";
     private static final String DIV_PARAM_NAME_AND_VALUE = "=";
 
@@ -32,7 +33,8 @@ public class Parser {
 
     public Map<String, String> getValues() {
         Map<String, String> appProps = new HashMap<>();
-        db = db.substring(db.indexOf(DIV_NAME_AND_VALUES) + 1, db.length() - 1);
+        db = db.substring(db.indexOf(DIV_NAME_AND_VALUES) + 1, db.length());
+        db.replaceAll(END_OF_LINE, "");
         String[] divDB = db.split(",");
         for (String value : divDB) {
             appProps.put(value.substring(0, value.indexOf(DIV_PARAM_NAME_AND_VALUE)).trim(),

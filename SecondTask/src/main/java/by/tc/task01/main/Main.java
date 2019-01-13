@@ -42,6 +42,7 @@ public class Main {
 
         PrintApplianceInfo.print(appliance);
         //////////////////////////////
+        criteriaTabletPC = new Criteria<>();
         criteriaTabletPC.add(TabletPC.COLOR, "blue");
         criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 15);
         criteriaTabletPC.add(TabletPC.MEMORY_ROM, 8000);
@@ -52,10 +53,16 @@ public class Main {
         ///////////////////////////////////
         Criteria<Refrigerator> criteriaRefrigerator = new Criteria<>();
         criteriaRefrigerator.add(Refrigerator.WEIGHT, 30);
-
+        criteriaRefrigerator.add(Refrigerator.WIDTH, 80);
+        
         appliance = service.find(criteriaRefrigerator);
         PrintApplianceInfo.print(appliance);
+        ///////////////////////////////////////////
+        Criteria<Speakers> criteriaSpeakers = new Criteria<>();
+        criteriaSpeakers.add(Speakers.POWER_CONSUMPTION, 17);
 
+        appliance = service.find(criteriaSpeakers);
+        PrintApplianceInfo.print(appliance);
     }
 
 }
