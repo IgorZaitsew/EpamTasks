@@ -33,7 +33,7 @@ public class Main {
 
         PrintApplianceInfo.print(appliance);
 
-        //////////////////////////////////////////////////////////////////
+//        //////////////////////////////////////////////////////////////////
         Criteria<TabletPC> criteriaTabletPC = new Criteria<TabletPC>();
         criteriaTabletPC.add(TabletPC.COLOR, "blue");
         criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 14);
@@ -42,14 +42,14 @@ public class Main {
         appliance = service.find(criteriaTabletPC);
 
         PrintApplianceInfo.print(appliance);
-
-        criteriaTabletPC.add(TabletPC.COLOR, "blue");
-        criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 10);
-        criteriaTabletPC.add(TabletPC.MEMORY_ROM, 8000);
-
-        appliance = service.find(criteriaTabletPC);
-        
-         PrintApplianceInfo.print(appliance);
+//         //////////////////////////////
+//        criteriaTabletPC.add(TabletPC.COLOR, "blue");
+//        criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 10);
+//        criteriaTabletPC.add(TabletPC.MEMORY_ROM, 8000);
+//
+//        appliance = service.find(criteriaTabletPC);
+//        
+//         PrintApplianceInfo.print(appliance);
 
     }
 
