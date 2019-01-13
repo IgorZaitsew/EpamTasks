@@ -35,7 +35,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 
     private <E> boolean compareCriteriaWithAppProps(Criteria<E> criteria, Map<String, String> appProps) {
         for (E key : criteria.keySet()) {
-            if (!appProps.containsKey(key.toString()) || !appProps.get(key.toString()).trim().equals(criteria.getValue(key).toString())) {
+            if (!appProps.containsKey(key.toString()) || !appProps.get(key.toString()).equals(criteria.getValue(key).toString())) {
                 return false;
             }
         }

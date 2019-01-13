@@ -22,7 +22,7 @@ public class Parser {
 
     public boolean parse(BufferedReader reader) throws IOException, ParserException {
         db = "";
-        while (db.isEmpty() && !lineValidate(db)) {
+        while (!lineValidate(db)) {
             db = reader.readLine();
             if (db == null) {
                 return false;
@@ -36,9 +36,11 @@ public class Parser {
         db = db.substring(db.indexOf(DIV_NAME_AND_VALUES) + 1, db.length());
         db.replaceAll(END_OF_LINE, "");
         String[] divDB = db.split(",");
+        int indexOfDiv;
         for (String value : divDB) {
-            appProps.put(value.substring(0, value.indexOf(DIV_PARAM_NAME_AND_VALUE)).trim(),
-                    value.substring(value.indexOf(DIV_PARAM_NAME_AND_VALUE) + 1, value.length()).trim());
+            indexOfDiv = value.indexOf(DIV_PARAM_NAME_AND_VALUE);
+            appProps.put(value.substring(0, indexOfDiv).trim(),
+                    value.substring(indexOfDiv + 1, value.length()).trim());
         }
         return appProps;
     }
@@ -48,6 +50,9 @@ public class Parser {
     }
 
     private boolean lineValidate(String line) {
+        if (line.isEmpty()) {
+            return false;
+        }
         return findCount(line, DIV_PARAM_NAME_AND_VALUE) == (findCount(line, DIV_VALUES) + 1);
     }
 
