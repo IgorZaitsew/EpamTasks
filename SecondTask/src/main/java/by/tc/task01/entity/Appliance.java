@@ -25,10 +25,4 @@ public class Appliance {
         Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
         return appName + " : " + list.toString();
     }
-
-    private void sortPropsByAlph(StringBuffer sb) {
-        for (String appProp : appProps.keySet()) {
-
-        }
-    }
 }

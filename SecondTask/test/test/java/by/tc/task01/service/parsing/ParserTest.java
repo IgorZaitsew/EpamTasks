@@ -22,19 +22,16 @@ public class ParserTest {
 
     @Test
     public <E> void parseTest() throws IOException, ParserException {
-//        String dbPath;
-//        dbPath = "src/main/resources/appliances_db.txt";
-//        BufferedReader reader = new BufferedReader(new FileReader(dbPath));
-//        String line;
-//        line = parse(reader);
-//        // System.out.println(line.replaceAll(".* : ", ""));
-//        line = line.replaceAll(".* : ", "").replace(";", "");
-//        String[] dividedLine = line.split(", ");
-//        for (String singleLine : dividedLine) {
-//            System.out.println(singleLine);
-//        }
-        String div = "str";
-        String a = "str : blablabla";
-        System.out.println(a.indexOf(div));
+        String dbPath;
+        dbPath = "src/main/resources/appliances_db.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(dbPath));
+        String line;
+        line = parse(reader);
+        // System.out.println(line.replaceAll(".* : ", ""));
+        line = line.replaceAll(".* : ", "").replace(";", "");
+        String[] dividedLine = line.split(", ");
+        for (String singleLine : dividedLine) {
+            System.out.println(singleLine);
+        }
     }
 }
