@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
         try {
             parser = factory.newSAXParser();
             SAXHandler saxh = new SAXHandler();
-            parser.parse(new File("src/resources/menu_db.xml"), saxh);
+            parser.parse(new File("E:\\GitFolder\\ThirdTask\\src\\resources\\menu_db.xml"), saxh);
             foodList = saxh.getFoodArray();
         } catch (SAXException e) {
             e.printStackTrace();

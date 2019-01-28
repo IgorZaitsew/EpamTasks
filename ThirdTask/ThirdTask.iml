@@ -37,6 +37,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" scope="PROVIDED" name="JSTL" level="project" />
-    <orderEntry type="library" name="JSTL" level="application" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="JSTL" level="application" />
+    <orderEntry type="library" exported="" name="standard-1.1.2" level="project" />
   </component>
 </module>

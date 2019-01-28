@@ -42,15 +42,15 @@
         <image>assortedEggplants.png</image>
         <name> Ассорти баклажаны</name>
         <Descr>
-            <description>Жареные баклажаны с помидорами</description>
+            <description>Жареные баклажаны 1)с помидорами</description>
             <price>100</price>
         </Descr>
         <Descr>
-            <description>с чесноком</description>
+            <description>2)с чесноком</description>
             <price>110</price>
         </Descr>
         <Descr>
-            <description>с орехами</description>
+            <description>3)с орехами</description>
             <price>130</price>
         </Descr>
         <portion>100/5</portion>      
