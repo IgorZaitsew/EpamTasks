@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://www.epam.thirdTask.com/menu"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="menu.xsd"
+      type="cold snacks">
+      
+    <food>
+        <id>1</id>
+        <image>fishPlatter.png</image>
+        <name>Ассорти рыбное</name>
+        <Descr>
+            <description>Слабосоленая форель, семга</description>
+            <price>10</price>
+        </Descr>
+        <portion>100/20/15</portion>      
+    </food>
+
+    <food>
+        <id>2</id>
+        <image>Tartlets.png</image>
+        <name>Тарталетки с красной икрой</name>
+        <Descr>
+            <description>Тарталетки с красной икрой</description>
+            <price>10</price>
+        </Descr>
+        <portion>60/50</portion>      
+    </food>
+
+    <food>
+        <id>3</id>
+        <image>russianSnack.png</image>
+        <name>Закуска по-русски</name>
+        <Descr>
+            <description>Кусочки антлантической сельди с отварным картофелем, луком, лимоном и зеленью</description>
+            <price>10</price>
+        </Descr>
+        <portion>70/50/2/10</portion>      
+    </food>
+    
+    <food>
+        <id>8</id>
+        <image>assortedEggplants.png</image>
+        <name> Ассорти баклажаны</name>
+        <Descr>
+            <description>Жареные баклажаны с помидорами</description>
+            <price>100</price>
+        </Descr>
+        <Descr>
+            <description>с чесноком</description>
+            <price>110</price>
+        </Descr>
+        <Descr>
+            <description>с орехами</description>
+            <price>130</price>
+        </Descr>
+        <portion>100/5</portion>      
+    </food>
+
+
+</menu>

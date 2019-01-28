@@ -1,8 +1,10 @@
-package by.tc.zaycevigor.service.parsing;
+package by.tc.zaycevigor.dao;
 
 import by.tc.zaycevigor.entity.Food;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -19,7 +21,7 @@ public class SAXHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName,
-            String qName, Attributes attributes) throws SAXException {
+                             String qName, Attributes attributes) throws SAXException {
         thisElement = qName;
     }
 
@@ -45,10 +47,10 @@ public class SAXHandler extends DefaultHandler {
             food.setImageURL(new String(ch, start, length));
         }
         if (thisElement.equals("description")) {
-            food.setDescr(new String(ch, start, length));
+            food.addDescr(new String(ch, start, length));
         }
         if (thisElement.equals("price")) {
-            food.setPrice(new String(ch, start, length));
+            food.addPrice(Integer.parseInt(new String(ch, start, length)));
         }
     }
 

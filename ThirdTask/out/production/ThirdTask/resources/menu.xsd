@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.epam.thirdTask.com/menu"
+        xmlns:tns="http://www.epam.thirdTask.com/menu"
+        elementFormDefault="qualified">
+    
+    <simpleType name="imageURL">
+        <restriction base="string">
+            <pattern value="(.)+\.(gif|jpg|jpeg|bmp|png)"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="price">
+        <restriction base="xs:float">          
+            <xs:minInclusive value="0"/>
+        </restriction>
+    </simpleType>
+    
+    <complexType name="Descr">
+        <sequence maxOccurs="unbounded">
+            <element name="description" type ="xs:string"/>  
+            <element name="foodPrice" type ="price"/>
+        </sequence>
+    </complexType>      
+    
+    <complexType name="Food">
+        <sequence>
+            <element name="id" type="xs:unsignedByte"/>
+            <element name="name" type ="xs:string"/>
+            <element name="foodImage" type = "tns:imageURL"/>
+            <element name ="descr" type= "tns:Descr"/>
+            <element name ="portion" type = "xs:string"/>
+        </sequence>
+    </complexType>  
+    
+    <complexType name="Menu">
+        <sequence maxOccurs="unbounded">
+            <element name="food" type="tns:Food"/>              
+        </sequence>
+    </complexType>
+    
+    <element name="Menu" type="tns:Menu">
+        <attribute name="type" type="xs:string" use="required"/>
+    </element>
+
+</schema>

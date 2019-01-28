@@ -1,16 +1,19 @@
 package by.tc.zaycevigor.entity;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+import java.util.*;
 
-public class Food {
+public class Food implements Serializable {
 
     private int id;
     private String name;
-    private Map<String, String> descrAndPrice = new HashMap();
     private String imageURL;
     private String weight;
-    private String descr;
+    private List<String> descrArray = new ArrayList<>();
+    private List<Integer> priceArray = new ArrayList<>();
+
+    public Food() {
+    }
 
     public int getId() {
         return id;
@@ -28,16 +31,28 @@ public class Food {
         this.name = name;
     }
 
-    public void setDescr(String descr) {
-        this.descr = descr;
+    public void setDescrArray(List<String> descrArray) {
+        this.descrArray = descrArray;
     }
 
-    public Map<String, String> getDescrAndPrice() {
-        return descrAndPrice;
+    public List<String> getDescrArray() {
+        return descrArray;
     }
 
-    public void setPrice(String price) {
-        descrAndPrice.put(descr, price);
+    public void addDescr(String descr) {
+        descrArray.add(descr);
+    }
+
+    public void setPriceArray(List<Integer> priceArray) {
+        this.priceArray = priceArray;
+    }
+
+    public List<Integer> getPriceArray() {
+        return priceArray;
+    }
+
+    public void addPrice(int price) {
+        priceArray.add(price);
     }
 
     public String getImageURL() {
@@ -54,14 +69,5 @@ public class Food {
 
     public void setWeight(String weight) {
         this.weight = weight;
-    }
-
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer("\nId: " + id + "\nImagePath: " + imageURL + "\n Name: " + name);
-        for (String descr : descrAndPrice.keySet()) {
-            sb.append("\n Description: ").append(descr).append("\n Price: ").append(descrAndPrice.get(descr));
-        }
-        return sb + "\n Weight: " + weight;
     }
 }
