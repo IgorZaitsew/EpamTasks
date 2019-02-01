@@ -20,24 +20,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.371" level="application_server_libraries" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/compat/src/main/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/impl/src/main/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/impl/src/test/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/jstlel/src/main/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/jstlel/src/test/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/spec/src/main/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/spec/src/test/java" />
-          <root url="jar://$USER_HOME$/Downloads/JavaLibraries/taglibs-standard-1.2.5-source-release.zip!/taglibs-standard-1.2.5/standard-test/src/test/java" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="library" exported="" scope="PROVIDED" name="JSTL" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="JSTL" level="application" />
     <orderEntry type="library" exported="" name="standard-1.1.2" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="log4j-1.2.17" level="project" />
   </component>
 </module>

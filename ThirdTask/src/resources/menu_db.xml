@@ -1,60 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<menu xmlns="http://www.epam.thirdTask.com/menu"
+<Menu xmlns="http://www.epam.thirdTask.com/menu"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="menu.xsd"
-      type="cold snacks">
-      
-    <food>
-        <id>1</id>
-        <image>fishPlatter.png</image>
+      xsi:schemaLocation="http://www.epam.thirdTask.com/menu ">
+
+    <Food id="1">
         <name>Ассорти рыбное</name>
-        <Descr>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+        <descr>
             <description>Слабосоленая форель, семга</description>
             <price>10</price>
-        </Descr>
-        <portion>100/20/15</portion>      
-    </food>
+        </descr>
+        <portion>100/20/15</portion>
+    </Food>
 
-    <food>
-        <id>2</id>
-        <image>Tartlets.png</image>
+    <Food id="2">
         <name>Тарталетки с красной икрой</name>
-        <Descr>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+        <descr>
             <description>Тарталетки с красной икрой</description>
             <price>10</price>
-        </Descr>
-        <portion>60/50</portion>      
-    </food>
+        </descr>
+        <portion>60/50</portion>
+    </Food>
 
-    <food>
-        <id>3</id>
-        <image>russianSnack.png</image>
+    <Food id="3">
         <name>Закуска по-русски</name>
-        <Descr>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+
+        <descr>
             <description>Кусочки антлантической сельди с отварным картофелем, луком, лимоном и зеленью</description>
             <price>10</price>
-        </Descr>
-        <portion>70/50/2/10</portion>      
-    </food>
-    
-    <food>
-        <id>8</id>
-        <image>assortedEggplants.png</image>
-        <name> Ассорти баклажаны</name>
-        <Descr>
-            <description>Жареные баклажаны 1)с помидорами</description>
+        </descr>
+        <portion>70/50/2/10</portion>
+    </Food>
+
+    <Food id="4">
+        <name>Куриный рулет</name>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Куриный рулет собственного производства</description>
+        </descr>
+        <portion>100/5</portion>
+    </Food>
+
+    <Food id="5">
+        <name>Бастурма</name>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Вяленая вырезка из говяжьего мяса</description>
+        </descr>
+        <portion>50/5</portion>
+    </Food>
+
+    <Food id="6">
+        <name>Ассорти мясное</name>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Нарезка из буженины, бастурмы, куриного рулета собственного производства и колбасы</description>
+        </descr>
+        <portion>100/30</portion>
+    </Food>
+
+    <Food id="8">
+        <name>Ассорти баклажаны</name>
+        <type>Холодные закуски</type>
+        <image>resources/food.jpg</image>
+        <descr>
+            <description>Жареные баклажаны</description>
+        </descr>
+        <descr>
+            <description>1. с помидорами</description>
             <price>100</price>
-        </Descr>
-        <Descr>
-            <description>2)с чесноком</description>
+        </descr>
+        <descr>
+            <description>2. с чесноком</description>
             <price>110</price>
-        </Descr>
-        <Descr>
-            <description>3)с орехами</description>
+        </descr>
+        <descr>
+            <description>3. с орехами</description>
             <price>130</price>
-        </Descr>
-        <portion>100/5</portion>      
-    </food>
+        </descr>
+        <portion>100/5</portion>
+    </Food>
 
 
-</menu>
+</Menu>

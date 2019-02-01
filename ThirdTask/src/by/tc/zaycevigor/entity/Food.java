@@ -9,11 +9,23 @@ public class Food implements Serializable {
     private String name;
     private String imageURL;
     private String weight;
+    private String type;
+
     private List<String> descrArray = new ArrayList<>();
     private List<Integer> priceArray = new ArrayList<>();
 
     public Food() {
     }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 
     public int getId() {
         return id;
@@ -35,8 +47,12 @@ public class Food implements Serializable {
         this.descrArray = descrArray;
     }
 
-    public List<String> getDescrArray() {
-        return descrArray;
+    public String getDescrArray() {
+        StringBuffer sb = new StringBuffer();
+        for (String descr : descrArray) {
+            sb.append(descr + "</br>");
+        }
+        return sb + "";
     }
 
     public void addDescr(String descr) {
@@ -47,8 +63,12 @@ public class Food implements Serializable {
         this.priceArray = priceArray;
     }
 
-    public List<Integer> getPriceArray() {
-        return priceArray;
+    public String getPriceArray() {
+        StringBuffer sb = new StringBuffer();
+        for (int price : priceArray) {
+            sb.append(price + "</br>");
+        }
+        return sb + "";
     }
 
     public void addPrice(int price) {

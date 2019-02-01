@@ -2,45 +2,48 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.epam.thirdTask.com/menu"
         xmlns:tns="http://www.epam.thirdTask.com/menu"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
         elementFormDefault="qualified">
-    
+
     <simpleType name="imageURL">
         <restriction base="string">
             <pattern value="(.)+\.(gif|jpg|jpeg|bmp|png)"/>
         </restriction>
     </simpleType>
 
-    <simpleType name="price">
-        <restriction base="xs:float">          
+    <simpleType name="price"  >
+        <restriction base="xs:float">
             <xs:minInclusive value="0"/>
         </restriction>
     </simpleType>
-    
-    <complexType name="Descr">
+
+    <complexType name="descr">
         <sequence maxOccurs="unbounded">
-            <element name="description" type ="xs:string"/>  
-            <element name="foodPrice" type ="price"/>
-        </sequence>
-    </complexType>      
-    
-    <complexType name="Food">
-        <sequence>
-            <element name="id" type="xs:unsignedByte"/>
-            <element name="name" type ="xs:string"/>
-            <element name="foodImage" type = "tns:imageURL"/>
-            <element name ="descr" type= "tns:Descr"/>
-            <element name ="portion" type = "xs:string"/>
-        </sequence>
-    </complexType>  
-    
-    <complexType name="Menu">
-        <sequence maxOccurs="unbounded">
-            <element name="food" type="tns:Food"/>              
+            <element name="description" type="xs:string"/>
+            <element name="price" type="tns:price" minOccurs="0"/>
         </sequence>
     </complexType>
-    
-    <element name="Menu" type="tns:Menu">
-        <attribute name="type" type="xs:string" use="required"/>
-    </element>
+
+    <complexType name="Food">
+        <sequence>
+            <element name="name" type="xs:string"/>
+            <element name="type" type="xs:string"/>
+            <element name="image" type="tns:imageURL"/>
+            <sequence maxOccurs="unbounded">
+                <element name="descr" type="tns:descr"/>
+            </sequence>
+            <element name="portion" type="xs:string"/>
+        </sequence>
+        <attribute name="id" type="xs:unsignedByte"/>
+    </complexType>
+
+    <complexType name="Menu">
+        <sequence maxOccurs="unbounded">
+            <element name="Food" type="tns:Food"/>
+        </sequence>
+    </complexType>
+
+    <element name="Menu" type="tns:Menu"></element>
 
 </schema>
