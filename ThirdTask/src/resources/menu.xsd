@@ -7,35 +7,42 @@
         elementFormDefault="qualified">
 
     <simpleType name="imageURL">
-        <restriction base="string">
+        <restriction base="xs:string">
             <pattern value="(.)+\.(gif|jpg|jpeg|bmp|png)"/>
         </restriction>
     </simpleType>
 
-    <simpleType name="price"  >
+    <simpleType name="price">
         <restriction base="xs:float">
             <xs:minInclusive value="0"/>
         </restriction>
     </simpleType>
 
+
     <complexType name="descr">
         <sequence maxOccurs="unbounded">
-            <element name="description" type="xs:string"/>
+            <element name="description" type="xs:string" minOccurs="0"/>
             <element name="price" type="tns:price" minOccurs="0"/>
         </sequence>
     </complexType>
 
+    <simpleType name="type">
+        <restriction base="xs:string">
+            <pattern value="(ColdSnack|HotSnack|Breakfast)"/>
+        </restriction>
+    </simpleType>
+
     <complexType name="Food">
         <sequence>
             <element name="name" type="xs:string"/>
-            <element name="type" type="xs:string"/>
             <element name="image" type="tns:imageURL"/>
             <sequence maxOccurs="unbounded">
                 <element name="descr" type="tns:descr"/>
             </sequence>
             <element name="portion" type="xs:string"/>
         </sequence>
-        <attribute name="id" type="xs:unsignedByte"/>
+        <attribute name="id" type="xs:unsignedByte" use="required"/>
+        <attribute name="type" type="xs:string"/>
     </complexType>
 
     <complexType name="Menu">

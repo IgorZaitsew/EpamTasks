@@ -11,8 +11,8 @@ public class Food implements Serializable {
     private String weight;
     private String type;
 
-    private List<String> descrArray = new ArrayList<>();
-    private List<Integer> priceArray = new ArrayList<>();
+    private String description = " ";
+    private String price = " ";
 
     public Food() {
     }
@@ -43,36 +43,20 @@ public class Food implements Serializable {
         this.name = name;
     }
 
-    public void setDescrArray(List<String> descrArray) {
-        this.descrArray = descrArray;
-    }
-
-    public String getDescrArray() {
-        StringBuffer sb = new StringBuffer();
-        for (String descr : descrArray) {
-            sb.append(descr + "</br>");
-        }
-        return sb + "";
+    public String getDescription() {
+        return description;
     }
 
     public void addDescr(String descr) {
-        descrArray.add(descr);
+        this.description = description.concat(descr + "</br>");
     }
 
-    public void setPriceArray(List<Integer> priceArray) {
-        this.priceArray = priceArray;
-    }
-
-    public String getPriceArray() {
-        StringBuffer sb = new StringBuffer();
-        for (int price : priceArray) {
-            sb.append(price + "</br>");
-        }
-        return sb + "";
+    public String getPrice() {
+        return price;
     }
 
     public void addPrice(int price) {
-        priceArray.add(price);
+        this.price = this.price.concat(price + "</br>");
     }
 
     public String getImageURL() {

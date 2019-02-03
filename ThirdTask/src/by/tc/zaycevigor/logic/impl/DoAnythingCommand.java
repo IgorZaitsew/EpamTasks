@@ -20,9 +20,9 @@ public class DoAnythingCommand implements ICommand {
         String page;
         XMLDao dao;
         try {
-            dao = XMLDAOFactory.getInstance().getDAO(XMLDAOFactory.DAOType.SAX);
+            dao = XMLDAOFactory.getInstance().getDAO(XMLDAOFactory.DAOType.valueOf(request.getParameter("parser").toUpperCase()));
             List<Food> info =
-                    dao.parse(request.getParameter(RequestParametrName.FILE_NAME));
+                    dao.parse("E:\\GitFolder\\ThirdTask\\src\\resources\\menu_db.xml");
             request.setAttribute(RequestParametrName.SIMPLE_INFO, info);
             page = JspPageName.MENU_PAGE;
         } catch (XMLDaoException | XMLStreamException e) {

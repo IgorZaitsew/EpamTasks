@@ -1,5 +1,6 @@
 package by.tc.zaycevigor.dao;
 
+import by.tc.zaycevigor.dao.impl.DomXmlDao;
 import by.tc.zaycevigor.dao.impl.SaxXmlDao;
 import by.tc.zaycevigor.dao.impl.StaxXmlDao;
 
@@ -19,6 +20,8 @@ public class XMLDAOFactory {
                 return SaxXmlDao.getInstance();
             case STAX:
                 return StaxXmlDao.getInstance();
+            case DOM:
+                return DomXmlDao.getInstance();
             default:
                 throw new XMLDaoException("No such DAO");
         }

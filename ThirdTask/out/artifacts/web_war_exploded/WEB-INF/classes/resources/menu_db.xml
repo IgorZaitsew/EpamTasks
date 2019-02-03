@@ -3,9 +3,8 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.epam.thirdTask.com/menu ">
 
-    <Food id="1">
+    <Food id="1" type="ColdSnack">
         <name>Ассорти рыбное</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
         <descr>
             <description>Слабосоленая форель, семга</description>
@@ -14,32 +13,29 @@
         <portion>100/20/15</portion>
     </Food>
 
-    <Food id="2">
+    <Food id="2" type="ColdSnack">
         <name>Тарталетки с красной икрой</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
         <descr>
             <description>Тарталетки с красной икрой</description>
-            <price>10</price>
+            <price>15</price>
         </descr>
         <portion>60/50</portion>
     </Food>
 
-    <Food id="3">
+    <Food id="3" type="ColdSnack">
         <name>Закуска по-русски</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
 
         <descr>
             <description>Кусочки антлантической сельди с отварным картофелем, луком, лимоном и зеленью</description>
-            <price>10</price>
+            <price>20</price>
         </descr>
         <portion>70/50/2/10</portion>
     </Food>
 
-    <Food id="4">
+    <Food id="4" type="ColdSnack">
         <name>Куриный рулет</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
 
         <descr>
@@ -48,9 +44,8 @@
         <portion>100/5</portion>
     </Food>
 
-    <Food id="5">
+    <Food id="5" type="ColdSnack">
         <name>Бастурма</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
 
         <descr>
@@ -59,20 +54,29 @@
         <portion>50/5</portion>
     </Food>
 
-    <Food id="6">
+    <Food id="6" type="ColdSnack">
         <name>Ассорти мясное</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
 
         <descr>
-            <description>Нарезка из буженины, бастурмы, куриного рулета собственного производства и колбасы</description>
+            <description>Нарезка из буженины, бастурмы, куриного рулета собственного производства и колбасы
+            </description>
         </descr>
         <portion>100/30</portion>
     </Food>
 
-    <Food id="8">
+    <Food id="7" type="ColdSnack">
+        <name>Язык отварной</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Нарезка нежного говяжьего языка, подаётся с хреном</description>
+        </descr>
+        <portion>100/30</portion>
+    </Food>
+
+    <Food id="8" type="ColdSnack">
         <name>Ассорти баклажаны</name>
-        <type>Холодные закуски</type>
         <image>resources/food.jpg</image>
         <descr>
             <description>Жареные баклажаны</description>
@@ -92,5 +96,120 @@
         <portion>100/5</portion>
     </Food>
 
+    <Food id="9" type="ColdSnack">
+        <name>Соленья по-домашнему</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Маринованные овощи</description>
+        </descr>
+        <portion>150/30</portion>
+    </Food>
+
+    <Food id="10" type="ColdSnack">
+        <name>Бабушкины угощения</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Ассорти из маринованных грибов</description>
+        </descr>
+        <portion>120/20/10</portion>
+    </Food>
+
+    <Food id="11" type="ColdSnack">
+        <name>Сырная тарелка</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Сыры Чечел, дор блю, российский мраморный</description>
+        </descr>
+        <portion>100/5</portion>
+    </Food>
+
+    <Food id="1" type="HotSnack">
+        <name>Лобио с шампиньонами</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Фасоль с шампиньонами и грецким орехом</description>
+            <price>105</price>
+        </descr>
+        <portion>150/5</portion>
+    </Food>
+
+    <Food id="2" type="HotSnack">
+        <name>Жульен</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>1. С курицей</description>
+            <price>145</price>
+        </descr>
+        <descr>
+            <description>2. С грибами</description>
+            <price>155</price>
+        </descr>
+        <portion>120/1</portion>
+    </Food>
+
+    <Food id="3" type="HotSnack">
+        <name>Ахтамар мясной</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Колбаса, ветчина, буженина, сыр, запеченные на мангале в лаваше</description>
+            <price>165</price>
+        </descr>
+        <portion>1 шт.</portion>
+    </Food>
+
+    <Food id="4" type="HotSnack">
+        <name>Ахтамар с овощами</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Сыр, помидоры, зелень, запеченные на мангале в лаваше</description>
+            <price>150</price>
+        </descr>
+        <portion>1 шт.</portion>
+    </Food>
+
+    <Food id="5" type="HotSnack">
+        <name>Сюрприз</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <price>260</price>
+        </descr>
+        <portion>1 шт.</portion>
+    </Food>
+
+    <Food id="6" type="HotSnack">
+        <name>Креветки</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>1. отварные</description>
+            <price>135</price>
+        </descr>
+
+        <descr>
+            <description>1. жареные</description>
+            <price>155</price>
+        </descr>
+        <portion>120/30</portion>
+    </Food>
+
+    <Food id="7" type="HotSnack">
+        <name>Мидии по-турецки</name>
+        <image>resources/food.jpg</image>
+
+        <descr>
+            <description>Мидии, фаршированные сыром и грецким орехом</description>
+            <price>190</price>
+        </descr>
+
+        <portion>150/30</portion>
+    </Food>
 
 </Menu>

@@ -39,6 +39,7 @@
         <th>Описание</th>
         <th>Порция</br>(грамм)</th>
         <th>Цена</br>(руб.)</th>
+        <div style="float:right;"></div>
     </tr>
     <c:forEach var="foodList" items="${list}">
 
@@ -46,12 +47,52 @@
             <td>${foodList.id}</td>
             <td><img src=${foodList.imageURL} width="50" height="50"></td>
             <td>${foodList.name}</td>
-            <td>${foodList.descrArray}</td>
+            <td>${foodList.description}</td>
             <td>${foodList.weight}</td>
-            <td>${foodList.priceArray}</td>
+            <td>${foodList.price}</td>
         </tr>
 
     </c:forEach>
+
+    <form action="/menu?parser=<%=request.getParameter("parser")%>" method="post">
+        <input type="hidden" name="command" value="do_anything_command"/>
+        <input type="hidden" name="filename" value="myfile"/>
+        <input type="hidden" name="foodType" value="ColdSnack"/>
+        <input type="hidden" name="startPos" value="0"/>
+        <input type="hidden" name="count" value="6"/>
+        <input type="submit" value="Холодные закуски"/>
+        <div style="float:left;"></div>
+    </form>
+
+    <form action="/menu?parser=<%=request.getParameter("parser")%>" method="post">
+        <input type="hidden" name="command" value="do_anything_command"/>
+        <input type="hidden" name="filename" value="myfile"/>
+        <input type="hidden" name="foodType" value="HotSnack"/>
+        <input type="hidden" name="startPos" value="0"/>
+        <input type="hidden" name="count" value="6"/>
+        <input type="submit" value="Горячие закуски"/>
+        <div style="float:left;"></div>
+    </form>
+
+    <form action="/menu?parser=<%=request.getParameter("parser")%>" method="post">
+        <input type="hidden" name="command" value="do_anything_command"/>
+        <input type="hidden" name="filename" value="myfile"/>
+        <input type="hidden" name="foodType" value="<%=request.getParameter("foodType")%>"/>
+        <input type="hidden" name="startPos" value="<%=Integer.parseInt(request.getParameter("startPos"))-1%>"/>
+        <input type="hidden" name="count" value="6"/>
+        <input type="submit" value="<-"/>
+        <div style="float:left;"></div>
+    </form>
+
+    <form action="/menu?parser=<%=request.getParameter("parser")%>" method="post">
+        <input type="hidden" name="command" value="do_anything_command"/>
+        <input type="hidden" name="filename" value="myfile"/>
+        <input type="hidden" name="foodType" value="<%=request.getParameter("foodType")%>"/>
+        <input type="hidden" name="startPos" value="<%=Integer.parseInt(request.getParameter("startPos"))+1%>"/>
+        <input type="hidden" name="count" value="6"/>
+        <input type="submit" value="->"/>
+        <div style="float:left;"></div>
+    </form>
 </table>
 </body>
 </html>

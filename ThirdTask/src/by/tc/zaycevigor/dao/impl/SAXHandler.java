@@ -14,7 +14,6 @@ public class SAXHandler extends DefaultHandler {
     private Food food;
     private String thisElement;
 
-
     @Override
     public void startElement(String uri, String localName,
                              String qName, Attributes attributes) {
@@ -22,6 +21,7 @@ public class SAXHandler extends DefaultHandler {
         if (qName.equalsIgnoreCase("Food")) {
             food = new Food();
             food.setId(Integer.parseInt(attributes.getValue("id")));
+            food.setType(attributes.getValue("type"));
         }
     }
 
@@ -47,7 +47,10 @@ public class SAXHandler extends DefaultHandler {
             food.setImageURL(new String(ch, start, length));
         }
         if (thisElement.equals("description")) {
-            food.addDescr(new String(ch, start, length));
+            String descr = new String(ch, start, length);
+            if (!descr.isEmpty()) {
+                food.addDescr(new String(ch, start, length));
+            }
         }
         if (thisElement.equals("price")) {
             int price = Integer.parseInt(new String(ch, start, length));

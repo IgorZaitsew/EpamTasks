@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class StaxXmlDao implements XMLDao {
-    private final static SaxXmlDao instance = new SaxXmlDao();
+    private final static StaxXmlDao instance = new StaxXmlDao();
     private static final String FILE_NOT_FOUND_EXC = "File path is wrong";
 
     public static XMLDao getInstance() {
@@ -35,6 +35,7 @@ public class StaxXmlDao implements XMLDao {
         XMLEventReader xmlEventReader;
         try {
             xmlEventReader = xmlInputFactory.createXMLEventReader(new FileInputStream(resourceName));
+
         } catch (XMLStreamException e) {
             e.printStackTrace();
             throw new XMLDaoException("", e);
@@ -49,13 +50,16 @@ public class StaxXmlDao implements XMLDao {
                 e.printStackTrace();
             }
             if (xmlEvent.isStartElement()) {
+
                 StartElement startElement = xmlEvent.asStartElement();
                 if (startElement.getName().getLocalPart().equals("Food")) {
                     food = new Food();
                     Attribute idAttr = startElement.getAttributeByName(new QName("id"));
+                    Attribute typeAttr = startElement.getAttributeByName(new QName("type"));
 
                     if (idAttr != null) {
                         food.setId(Integer.parseInt(idAttr.getValue()));
+                        food.setType(typeAttr.getValue());
                     }
                 } else if (startElement.getName().getLocalPart().equals("image")) {
                     xmlEvent = xmlEventReader.nextEvent();
@@ -63,9 +67,6 @@ public class StaxXmlDao implements XMLDao {
                 } else if (startElement.getName().getLocalPart().equals("name")) {
                     xmlEvent = xmlEventReader.nextEvent();
                     food.setName(xmlEvent.asCharacters().getData());
-                } else if (startElement.getName().getLocalPart().equals("type")) {
-                    xmlEvent = xmlEventReader.nextEvent();
-                    food.setType(xmlEvent.asCharacters().getData());
                 } else if (startElement.getName().getLocalPart().equals("description")) {
                     xmlEvent = xmlEventReader.nextEvent();
                     food.addDescr(xmlEvent.asCharacters().getData());
