@@ -60,7 +60,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
         user.setEmail(rs.getString("email"));
         user.setLogin(rs.getString("login"));
-        user.setPasswordHash(rs.getString("login"));
+        user.setPasswordHash(rs.getString("password"));
 
         return user;
 

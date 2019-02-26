@@ -16,11 +16,11 @@ public class InternetServiceImpl implements InternetService {
 		DAOProvider provider = DAOProvider.getInstance();
 		TariffDAO tariffDAO = provider.getTariffDAO();
 		
-		List<Tariff> books;
+		List<Tariff> tariffs;
+
+		tariffs = tariffDAO.find(criterias);
 		
-		books = tariffDAO.find(criterias);
-		
-		return books;
+		return tariffs;
 	}
 
 }

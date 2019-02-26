@@ -49,15 +49,15 @@ public class RegistrationCommand implements Command {
         try {
             isRegistrated = service.registration(user);
 
-            if (!isRegistrated) {
-                request.setAttribute("error", "Login, Email or Password Error");
-                page = REGISTRATION_PAGE;
-            } else {
+            if (isRegistrated) {
                 request.setAttribute("user", user);
                 page = MAIN_PAGE;
                 String role = "admin";
                 HttpSession session = request.getSession(true);
                 session.setAttribute("role", role);
+            } else {
+                request.setAttribute("error", "Login, Email or Password Error");
+                page = REGISTRATION_PAGE;
             }
         } catch (ServiceException e) {
             request.setAttribute("error", "Login, Email or Password Error");

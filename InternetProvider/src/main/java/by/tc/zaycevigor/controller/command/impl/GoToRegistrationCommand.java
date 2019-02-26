@@ -18,7 +18,7 @@ public class GoToRegistrationCommand implements Command {
         String url = CreatorFullURL.create(request);
         request.getSession(true).setAttribute("prev_request", url);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/registration.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/registration.jsp");
         dispatcher.forward(request, response);
     }
 
