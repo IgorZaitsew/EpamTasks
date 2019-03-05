@@ -1,79 +1,87 @@
 package by.tc.zaycevigor.dao.impl;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-import by.tc.zaycevigor.dao.DaoException;
+import by.tc.zaycevigor.dao.exception.ConnectionPoolException;
+import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.UserDAO;
 import by.tc.zaycevigor.entity.User;
 import by.tc.zaycevigor.entity.UserData;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import org.apache.log4j.Logger;
 
 public class SQLUserDAO extends SqlDao implements UserDAO {
+    private static final String QUERY_REGISTRATE_USER = "INSERT INTO users (login, password, email)" +
+            " VALUES (?,?,?)";
+    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE login=?";
+    private static final String CON_POOL_CREATE_EXC = "Cannot create connection pool";
+    private static final String RES_SET_CLOSE_EXC = "Cannot close result set";
+    private static final String PREP_STAT_CLOSE_EXC = "Cannot close prepared statement";
+    private static final String QUERY_CHECK_EMAIL_USAGE = "SELECT COUNT(email) FROM users WHERE email=?";
+    private static final String QUERY_CHECK_LOGIN_USAGE = "SELECT COUNT(login) FROM users WHERE login=?";
+
     private static Logger log = Logger.getLogger(SqlDao.class);
-    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE login=? and password=?";
 
+    private static final ConnectionPoolImpl pool;
 
-    private static final ConnectionPool pool = ConnectionPool.getInstance();
+    static {
+        try {
+            pool = ConnectionPoolImpl.create(url, login, password);
+        } catch (SQLException e) {
+            log.error(CON_POOL_CREATE_EXC);
+            throw new ConnectionPoolException(e);
+        }
+    }
 
     @Override
     public User authentification(String userLogin, String userPassword) throws DaoException {
-        Connection con = null;
-        PreparedStatement st = null;
-        ResultSet rs = null;
+        Connection connection = pool.getConnection();
 
+        PreparedStatement prepStatement = null;
+        ResultSet resultSet = null;
         User user = null;
 
         try {
-            con = DriverManager.getConnection(url, login, password);
-            st = con.prepareStatement(QUERY_CHECK_CREDENTIONALS);
-
-            st.setString(1, userLogin);
-            st.setString(2, getHash(userPassword));
-
-            rs = st.executeQuery();
-
-            if (rs.next()) {
-                user = createUser(rs);
+            prepStatement = connection.prepareStatement(QUERY_CHECK_CREDENTIONALS);
+            prepStatement.setString(1, userLogin);
+            resultSet = prepStatement.executeQuery();
+            if (resultSet.next()) {
+                if (BCrypt.checkpw(userPassword, resultSet.getString("password"))) {
+                    user = createUser(resultSet);
+                }
             }
-
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            close(rs, st, con);
+
+            close(resultSet, prepStatement, connection);
         }
 
         return user;
     }
 
 
-    private User createUser(ResultSet rs) throws SQLException {
+    private User createUser(ResultSet resultSet) throws SQLException {
         User user = new User();
-
-        user.setEmail(rs.getString("email"));
-        user.setLogin(rs.getString("login"));
-        user.setPasswordHash(rs.getString("password"));
-
+        user.setEmail(resultSet.getString("email"));
+        user.setLogin(resultSet.getString("login"));
         return user;
 
     }
 
 
-    private void close(ResultSet rs, PreparedStatement st, Connection con) throws DaoException {
+    private void close(ResultSet rs, PreparedStatement st, Connection connection) throws DaoException {
         try {
             if (rs != null) {
                 rs.close();
             }
         } catch (SQLException e) {
-            log.error("Error while closing ResultSet", e);
+            log.error(RES_SET_CLOSE_EXC, e);
             throw new DaoException(e);
         }
         try {
@@ -81,68 +89,65 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
                 st.close();
             }
         } catch (SQLException e) {
-            log.error("Error while closing PreparedStatement", e);
+            log.error(PREP_STAT_CLOSE_EXC, e);
             throw new DaoException(e);
         }
-        try {
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException e) {
-            log.error("Error while closing Connection", e);
-            throw new DaoException(e);
+
+        if (connection != null) {
+            pool.releaseConnection(connection);
         }
     }
 
 
     @Override
-    public void registration(UserData userData) throws DaoException {
+    public boolean registration(UserData userData) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
 
-        Connection con = null;
-        PreparedStatement preparedStmt = null;
+        PreparedStatement prepStatement = null;
+        ResultSet resultSet = null;
+        if (!isUniqueDatas(userData.getLogin(), userData.getEmail(), connection)) {
+            return false;
+        }
+        boolean result;
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, login, password);
+            prepStatement = connection.prepareStatement(QUERY_REGISTRATE_USER);
 
-            String query = " insert into users (login, password, email)"
-                    + " values (?, ?, ?)";
+            prepStatement.setString(1, userData.getLogin());
+            prepStatement.setString(2, BCrypt.hashpw(userData.getPassword(), BCrypt.gensalt()));
+            prepStatement.setString(3, userData.getEmail());
 
-            preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString(1, userData.getLogin());
-            preparedStmt.setString(2, getHash(userData.getPassword()));
-            preparedStmt.setString(3, userData.getEmail());
-
-            preparedStmt.execute();
-            con.close();
-        } catch (SQLException | ClassNotFoundException e) {
+            result = prepStatement.execute();
+        } catch (SQLException e) {
             log.error(e);
             throw new DaoException(e);
 
+        } finally {
+            close(resultSet, prepStatement, connection);
         }
+        return result;
     }
 
-    private String getHash(String passwordToHash) throws DaoException {
-        String generatedPassword = null;
+    private boolean isUniqueDatas(String login, String email, Connection connection) throws DaoException {
+        return isUniqueData(email, QUERY_CHECK_EMAIL_USAGE, connection) &&
+                isUniqueData(login, QUERY_CHECK_LOGIN_USAGE, connection);
+    }
 
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
+    private boolean isUniqueData(String data, String query, Connection connection) throws DaoException {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            md.update(salt);
-
-            byte[] hashedPassword = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hashedPassword.length; i++) {
-                sb.append(Integer.toString((hashedPassword[i] & 0xff) + 0x100, 16).substring(1));
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, data);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (resultSet.getInt(1) >= 0) {
+                    return false;
+                }
             }
-            generatedPassword = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (SQLException e) {
             log.error(e);
             throw new DaoException(e);
         }
-        return generatedPassword;
+        return true;
     }
 
 }

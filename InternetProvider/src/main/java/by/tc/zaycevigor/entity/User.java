@@ -1,10 +1,8 @@
 package by.tc.zaycevigor.entity;
 
-import java.sql.Date;
-import java.util.Objects;
 
 public class User {
-    private String passwordHash;
+    private String password;
     private String login;
     private Tariff tariff;
     private boolean status;
@@ -18,12 +16,17 @@ public class User {
 
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public User(UserData data) {
+        login = data.getLogin();
+        email = data.getEmail();
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String passwordHash) {
+        this.password = passwordHash;
     }
 
     public String getLogin() {

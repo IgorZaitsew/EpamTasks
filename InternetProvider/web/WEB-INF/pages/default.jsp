@@ -10,11 +10,13 @@
     <title>Insert title here</title>
 </head>
 <body>
-<fmt:setLocale value="${sessionScope.local}"/>
-<fmt:setBundle basename="resources.locale" var="loc"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="locale" var="loc"/>
 <fmt:message bundle="${loc}" key="locale.default.welcom_message" var="welcom_message"/>
-<fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="locale_button_ru"/>
-<fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="locale_button_en"/>
+<fmt:message bundle="${loc}" key="locale.default.locale_botton.en" var="locale_button_en"/>
+<fmt:message bundle="${loc}" key="locale.default.locale_botton.ru" var="locale_button_ru"/>
+<fmt:message bundle="${loc}" key="locale.default.authorizate" var="authorization"/>
+<fmt:message bundle="${loc}" key="locale.default.registrate" var="registration"/>
 
 <div align="right">
     <form action="/controller" method="get">
@@ -33,17 +35,14 @@
 <h1>${welcom_message}</h1>
 
 <form action="/controller" method="get">
-    <input type="hidden" name="command" value="authorization">
-    Login: <input type="text" name="login" value=""/> <br/> Password: <input
-        type="password" name="password" value=""/> <br/> <input
-        type="submit" name="submit" value="press me"/>
+    <a href="/controller?command=goToAuthorizationPage">${authorization}</a>
 </form>
 
 <h3>
     <c:out value="${requestScope.error}"/>
 </h3>
 
-<a href="/controller?command=goToRegistrationPage">Registration</a>
+<a href="/controller?command=goToRegistrationPage">${registration}</a>
 
 <br/>
 <br/>

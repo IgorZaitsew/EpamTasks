@@ -3,11 +3,7 @@ package by.tc.zaycevigor.controller.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.tc.zaycevigor.controller.command.impl.AuthorizationCommand;
-import by.tc.zaycevigor.controller.command.impl.ChangeLocale;
-import by.tc.zaycevigor.controller.command.impl.GoToIndexPageCommand;
-import by.tc.zaycevigor.controller.command.impl.GoToRegistrationCommand;
-import by.tc.zaycevigor.controller.command.impl.RegistrationCommand;
+import by.tc.zaycevigor.controller.command.impl.*;
 
 public class CommandProvider {
 
@@ -15,10 +11,12 @@ public class CommandProvider {
 
     public CommandProvider() {
         commands.put("authorization", new AuthorizationCommand());
+        commands.put("goToAuthorizationPage", new GoToAuthorizationCommand());
         commands.put("goToRegistrationPage", new GoToRegistrationCommand());
         commands.put("registration", new RegistrationCommand());
-        commands.put("go_to_index", new GoToIndexPageCommand());
+        commands.put("registrationResult", new GoToMainPageCommand());
         commands.put("change_locale", new ChangeLocale());
+        commands.put("goToIndex", new GoToIndexPageCommand());
     }
 
     public Command getCommand(String commandName) {

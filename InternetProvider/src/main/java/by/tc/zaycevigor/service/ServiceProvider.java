@@ -12,7 +12,7 @@ public class ServiceProvider {
     }
 
     private ClientService clientService = new ClientServiceImpl();
-    private InternetService libService = new InternetServiceImpl();
+    private InternetService tariffService = new InternetServiceImpl();
 
 
     public ClientService getClientService() {
@@ -20,7 +20,7 @@ public class ServiceProvider {
     }
 
     public InternetService getInternetService() {
-        return libService;
+        return tariffService;
     }
 
     public static ServiceProvider getInstance() {

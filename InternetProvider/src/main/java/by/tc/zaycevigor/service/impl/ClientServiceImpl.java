@@ -1,28 +1,31 @@
 package by.tc.zaycevigor.service.impl;
 
 import by.tc.zaycevigor.dao.DAOProvider;
-import by.tc.zaycevigor.dao.DaoException;
+import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.UserDAO;
 import by.tc.zaycevigor.entity.User;
 import by.tc.zaycevigor.entity.UserData;
 import by.tc.zaycevigor.service.ClientService;
 import by.tc.zaycevigor.service.ServiceException;
-import by.tc.zaycevigor.service.validation.CredentionalValidator;
+import by.tc.zaycevigor.service.validation.UserValidator;
+import org.apache.log4j.Logger;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class ClientServiceImpl implements ClientService {
+    private static Logger log = Logger.getLogger(ClientServiceImpl.class);
 
     @Override
-    public User authorization(String login, String password) throws ServiceException {
+    public User authorization(String login, String password, HttpServletRequest request) throws ServiceException {
 
-        if (!CredentionalValidator.isCorrect(login, password)) {
-            throw new ServiceException();
+        if (!UserValidator.isCorrect(login, password, request)) {
+            return null;
         }
 
         DAOProvider daoProvider = DAOProvider.getInstance();
         UserDAO userDAO = daoProvider.getUserDAO();
 
         User user;
-
         try {
             user = userDAO.authentification(login, password);
         } catch (DaoException e) {
@@ -33,9 +36,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean registration(UserData user) throws ServiceException {
+    public boolean registration(UserData user, HttpServletRequest request) throws ServiceException {
 
-        if (!CredentionalValidator.isCorrect(user.getLogin(), user.getPassword(), user.getEmail())) {
+        if (!UserValidator.isCorrect(user.getLogin(), user.getPassword(), user.getEmail(), request)) {
             return false;
         }
 
@@ -43,8 +46,12 @@ public class ClientServiceImpl implements ClientService {
         UserDAO userDAO = daoProvider.getUserDAO();
 
         try {
-            userDAO.registration(user);
+            if(!userDAO.registration(user)){
+                return false;
+            }
+
         } catch (DaoException e) {
+            log.error(e);
             throw new ServiceException();
         }
         return true;

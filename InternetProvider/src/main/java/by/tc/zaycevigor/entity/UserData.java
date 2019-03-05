@@ -1,13 +1,9 @@
 package by.tc.zaycevigor.entity;
 
 public class UserData {
-private String login;
-private String password;
-private String email;
-
-public UserData(){
-
-}
+    String login;
+    String password;
+    String email;
 
     public String getLogin() {
         return login;

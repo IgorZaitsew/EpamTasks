@@ -1,8 +1,9 @@
 package by.tc.zaycevigor.dao.impl;
 
+import java.util.Properties;
 import java.util.ResourceBundle;
 
-import by.tc.zaycevigor.dao.NotDBDriverException;
+import by.tc.zaycevigor.dao.exception.NotDBDriverException;
 import org.apache.log4j.Logger;
 
 public abstract class SqlDao {
@@ -12,13 +13,13 @@ public abstract class SqlDao {
     protected static final String login;
     protected static final String password;
 
+    private static final Properties properties = new Properties();
+    private static final String DB_DRIVER = "dbDriver";
+    private static final String DB_URL = "dbUrl";
+    private static final String DB_LOGIN = "dbLogin";
+    private static final String DB_PASSWORD = "dbPassword";
 
-    private static final String DB_DRIVER = "db.driver";
-    private static final String DB_URL = "db.url";
-    private static final String DB_LOGIN = "db.login";
-    private static final String DB_PASSWORD = "db.password";
-
-    private static final String DB_PROPERTIES_FILE_PATH = "resources.db";
+    private static final String DB_PROPERTIES_FILE_PATH = "database";
 
 
     static {
@@ -29,6 +30,9 @@ public abstract class SqlDao {
         url = jdbcProperties.getString(DB_URL);
         login = jdbcProperties.getString(DB_LOGIN);
         password = jdbcProperties.getString(DB_PASSWORD);
+
+        properties.put("user", login);
+        properties.put("password", password);
 
         try {
             Class.forName(driver);

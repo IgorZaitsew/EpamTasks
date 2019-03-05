@@ -1,7 +1,6 @@
 package by.tc.zaycevigor.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,7 @@ import by.tc.zaycevigor.controller.command.CommandProvider;
 
 
 public class Controller extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7857329058902L;
 
     private static final String PARAMETER_COMMAND = "command";
 

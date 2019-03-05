@@ -12,7 +12,7 @@
 <h1>HELLO,</h1>
 <h2>
 
-    <c:out value="${requestScope.user.name}"/>
+    <c:out value="${requestScope.user.login}"/>
 </h2>
 
 </body>

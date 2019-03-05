@@ -1,4 +1,4 @@
-package by.tc.zaycevigor.dao;
+package by.tc.zaycevigor.dao.exception;
 
 public class NotDBDriverException extends RuntimeException{
 	private static final long serialVersionUID = -7223276245503461734L;

@@ -9,13 +9,13 @@ public class CreatorFullURL {
 	public static String create(HttpServletRequest request) {
 		String url = "";
 		
-		Enumeration<String> paramNames2 = request.getParameterNames();
+		Enumeration<String> paramNames = request.getParameterNames();
 		   
 		
 		String paramName;
 		String paramValue;
-		while(paramNames2.hasMoreElements()) {
-			paramName = paramNames2.nextElement();
+		while(paramNames.hasMoreElements()) {
+			paramName = paramNames.nextElement();
 			
 			paramValue = request.getParameter(paramName);
 			url = url + paramName + "=" + paramValue + "&";

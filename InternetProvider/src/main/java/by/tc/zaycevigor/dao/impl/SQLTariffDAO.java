@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.tc.zaycevigor.dao.TariffDAO;
-import by.tc.zaycevigor.dao.DaoException;
 import by.tc.zaycevigor.entity.Tariff;
 
 
