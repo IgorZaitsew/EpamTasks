@@ -4,7 +4,7 @@ public class Tariff {
     private int id;
     private String name;
     private float price;
-    private float internetSpd;
+    private float speed;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class Tariff {
         this.price = price;
     }
 
-    public float getInternetSpd() {
-        return internetSpd;
+    public float getSpeed() {
+        return speed;
     }
 
-    public void setInternetSpd(float internetSpd) {
-        this.internetSpd = internetSpd;
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }

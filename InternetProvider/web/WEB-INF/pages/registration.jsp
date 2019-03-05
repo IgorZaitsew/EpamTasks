@@ -44,7 +44,7 @@
 
     <br/>
 
-    <input type="submit" name="submit" value="press me"/>
+    <input type="submit" name="submit" value="${register}"/>
 </form>
 <h3>
     <c:out value="${request.error}"/>

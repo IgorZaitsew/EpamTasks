@@ -1,8 +1,7 @@
 package by.tc.zaycevigor.service;
 
-import by.tc.zaycevigor.entity.Tariff;
 import by.tc.zaycevigor.service.impl.ClientServiceImpl;
-import by.tc.zaycevigor.service.impl.InternetServiceImpl;
+import by.tc.zaycevigor.service.impl.TariffServiceImpl;
 
 public class ServiceProvider {
 
@@ -12,14 +11,14 @@ public class ServiceProvider {
     }
 
     private ClientService clientService = new ClientServiceImpl();
-    private InternetService tariffService = new InternetServiceImpl();
+    private TariffService tariffService = new TariffServiceImpl();
 
 
     public ClientService getClientService() {
         return clientService;
     }
 
-    public InternetService getInternetService() {
+    public TariffService getInternetService() {
         return tariffService;
     }
 

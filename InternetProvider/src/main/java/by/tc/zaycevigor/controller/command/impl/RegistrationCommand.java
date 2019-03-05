@@ -57,6 +57,7 @@ public class RegistrationCommand implements Command {
 
         } else {
             request.setAttribute("error", "Login, Email or Password Error");
+            System.out.println("Put to request");
             response.sendRedirect(GO_TO_REGISTRATION_PAGE);
         }
     }

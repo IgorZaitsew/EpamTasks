@@ -7,19 +7,17 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
-import static by.tc.zaycevigor.controller.JspPageName.AUTHORIZATION_PAGE;
+import static by.tc.zaycevigor.controller.JspPageName.DATA_PAGE;
 
-public class GoToAuthorizationCommand implements Command {
-
+public class GoToPersonalDataCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = CreatorFullURL.create(request);
         request.getSession(false).setAttribute("prev_request", url);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(AUTHORIZATION_PAGE);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(DATA_PAGE);
         dispatcher.forward(request, response);
     }
 }

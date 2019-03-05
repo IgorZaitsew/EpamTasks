@@ -24,7 +24,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
     private static int INITIAL_POOL_SIZE = 5;
     private static int MAX_POOL_SIZE = 10;
 
-    private ConnectionPoolImpl(String url, String user, String password, List<Connection> pool) throws SQLException {
+    private ConnectionPoolImpl(String url, String user, String password, List<Connection> pool) {
         this.url = url;
         this.user = user;
         this.password = password;
@@ -51,7 +51,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
                     connectionPool.add(createConnection(url, user, password));
                 } catch (SQLException e) {
                     log.error(CREATE_CON_EXC);
-                    throw new ConnectionPoolException(CREATE_CON_EXC,e);
+                    throw new ConnectionPoolException(CREATE_CON_EXC, e);
                 }
             } else {
                 log.error(MAX_SIZE_REACHED_EXC);

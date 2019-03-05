@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static by.tc.zaycevigor.controller.JspPageName.REGISTRATION_PAGE;
+import static by.tc.zaycevigor.controller.JspPageName.AUTHORIZATION_PAGE;
 
 public class UserFilter implements Filter {
     @Override
@@ -20,7 +20,7 @@ public class UserFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
-            request.getRequestDispatcher(REGISTRATION_PAGE).forward(request, response);
+            request.getRequestDispatcher(AUTHORIZATION_PAGE).forward(request, response);
         } else {
             filterChain.doFilter(request, response);
         }

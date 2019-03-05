@@ -47,6 +47,24 @@
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+
+
+<table border="1">
+    <tr>
+        <td>Title</td>
+        <td>Price</td>
+        <td>Name</td>
+    </tr>
+    <c:forEach items="${requestScope.tariffs}" var="tariff">
+        <tr>
+            <td>${tariff.name}</td>
+            <td>${tariff.price}</td>
+            <td>${tariff.speed}</td>
+        </tr>
+    </c:forEach>
+</table>
 
 
 </body>

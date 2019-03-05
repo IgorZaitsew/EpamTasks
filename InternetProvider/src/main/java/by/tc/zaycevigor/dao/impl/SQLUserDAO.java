@@ -70,6 +70,10 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         User user = new User();
         user.setEmail(resultSet.getString("email"));
         user.setLogin(resultSet.getString("login"));
+        user.setId(Integer.parseInt(resultSet.getString("id")));
+        user.setRole(resultSet.getString("role"));
+        user.setBanStatus(resultSet.getString("status"));
+        user.setBalance(Float.parseFloat(resultSet.getString("balance")));
         return user;
 
     }

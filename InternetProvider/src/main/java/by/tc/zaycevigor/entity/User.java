@@ -2,10 +2,13 @@ package by.tc.zaycevigor.entity;
 
 
 public class User {
+    private int id;
+
+
     private String password;
     private String login;
-    private Tariff tariff;
-    private boolean status;
+    private String tariffName;
+    private String status;
     private String role;
     private double balance;
     private AdressData adressData;
@@ -19,6 +22,14 @@ public class User {
     public User(UserData data) {
         login = data.getLogin();
         email = data.getEmail();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -37,19 +48,19 @@ public class User {
         this.login = login;
     }
 
-    public Tariff getTariffId() {
-        return tariff;
+    public String getTariffName() {
+        return tariffName;
     }
 
-    public void setTariffId(Tariff tariff) {
-        this.tariff = tariff;
+    public void setTariffName(String tariffName) {
+        this.tariffName = tariffName;
     }
 
-    public boolean isBanStatus() {
+    public String isBanStatus() {
         return status;
     }
 
-    public void setBanStatus(boolean banStatus) {
+    public void setBanStatus(String banStatus) {
         this.status = banStatus;
     }
 
