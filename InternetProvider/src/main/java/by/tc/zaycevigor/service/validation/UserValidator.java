@@ -4,69 +4,72 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserValidator {
+import static by.tc.zaycevigor.entity.ContractData.CONTRACT_NUMBER_SIZE;
+import static by.tc.zaycevigor.entity.ContractData.PASSWORD_SIZE;
+import static by.tc.zaycevigor.service.util.ErrorMessages.*;
+
+public class UserValidator  {
     public static final Pattern EMAIL =
-            Pattern.compile("^[A-Z0-9._]+?@[A-Z0-9_]+?\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    public static final Pattern PASSWORD = Pattern.compile("^[A-я0-9_.]{6,16}$", Pattern.CASE_INSENSITIVE);
-    public static final Pattern LOGIN = Pattern.compile("^[A-ZА-я]{4,12}$", Pattern.CASE_INSENSITIVE);
-    private static final String ERROR_LOGIN = "Login is incorrect&";
-    private static final String ERROR_PASSWORD = "Password is incorrect&";
-    private static final String ERROR_EMAIL = "Email is incorrect&";
+            Pattern.compile("^[A-Z]+[A-Z0-9_]+?\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern PASSWORD = Pattern.compile("^[A-я0-9_.]{"+PASSWORD_SIZE+"}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern CONTRACT_NUMBER = Pattern.compile("^[0-9]{"+CONTRACT_NUMBER_SIZE+"}$", Pattern.CASE_INSENSITIVE);
+    public static final String ERROR_NAME="error";
+    private StringBuilder errorMessage;
+    public boolean validate(HttpServletRequest request,long contractNumber) {
 
-    private static StringBuffer errorMessage;
+        errorMessage = new StringBuilder();
 
-    public static boolean isCorrect(String login, String password, HttpServletRequest request) {
-
-        errorMessage = new StringBuffer();
-
-        boolean isCorrect = isLoginCorrect(login) & isPasswordCorrect(password);
+        boolean isCorrect = isContractNumberCorrect(contractNumber);
         String incorrectDataMessage = errorMessage.toString();
         if (incorrectDataMessage.length() != 0) {
-            request.setAttribute("error", incorrectDataMessage);
+            request.setAttribute(ERROR_NAME, incorrectDataMessage);
         }
         return isCorrect;
     }
 
-    public static boolean isCorrect(String login, String password, String email, HttpServletRequest request) {
+    public boolean validate( HttpServletRequest request,long contractNumber, String password, String email) {
 
-        errorMessage = new StringBuffer();
+        errorMessage = new StringBuilder();
 
-        boolean isCorrect = isLoginCorrect(login) & isPasswordCorrect(password) & isEmailCorrect(email);
+        boolean isCorrect = isContractNumberCorrect(contractNumber) & isPasswordCorrect(password) & isEmailCorrect(email);
         String incorrectDataMessage = errorMessage.toString();
         if (incorrectDataMessage.length() != 0) {
-            request.setAttribute("error", incorrectDataMessage);
+            request.setAttribute(ERROR_NAME, incorrectDataMessage);
         }
         return isCorrect;
     }
 
-    private static boolean isLoginCorrect(String login) {
-        Matcher m = LOGIN.matcher(login);
+    private boolean isContractNumberCorrect(long contractNumber) {
+        Matcher m = CONTRACT_NUMBER.matcher(String.valueOf(contractNumber));
         if (m.find()) {
             return true;
         } else {
-            errorMessage.append(ERROR_LOGIN);
+            errorMessage.append(CONTRACT_NUMBER_ERROR);
             return false;
         }
     }
 
-    private static boolean isPasswordCorrect(String password) {
+    private boolean isPasswordCorrect(String password) {
         Matcher m = PASSWORD.matcher(password);
         if (m.find()) {
             return true;
         } else {
-            errorMessage.append(ERROR_PASSWORD);
+            errorMessage.append(PASSWORD_ERROR);
             return false;
         }
     }
 
-    private static boolean isEmailCorrect(String email) {
+    private boolean isEmailCorrect(String email) {
         Matcher m = EMAIL.matcher(email);
         if (m.find()) {
             return true;
         } else {
-            errorMessage.append(ERROR_EMAIL);
+            errorMessage.append(EMAIL_ERROR);
             return false;
         }
     }
 
+    public StringBuilder getErrorMessage() {
+        return errorMessage;
+    }
 }

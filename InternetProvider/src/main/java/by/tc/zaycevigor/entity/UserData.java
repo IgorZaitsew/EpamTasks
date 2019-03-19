@@ -1,24 +1,15 @@
 package by.tc.zaycevigor.entity;
 
 public class UserData {
-    String login;
-    String password;
+    long contractNumber;
     String email;
 
-    public String getLogin() {
-        return login;
+    public long getContractNumber() {
+        return contractNumber;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContractNumber(long contractNumber) {
+        this.contractNumber = contractNumber;
     }
 
     public String getEmail() {

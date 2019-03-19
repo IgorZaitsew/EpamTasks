@@ -1,22 +1,37 @@
 package by.tc.zaycevigor.entity.criteria;
 
-import by.tc.zaycevigor.entity.Tariff;
+import by.tc.zaycevigor.entity.Contract;
+import by.tc.zaycevigor.entity.User;
 
-import java.sql.Connection;
-import java.util.HashMap;
 import java.util.Map;
 
+import static by.tc.zaycevigor.controller.command.util.Constant.*;
+
 public class SearchCriteria {
-    private static final String ANY_NAME_VALUE = "%";
+    private static final String ANY_VALUE = "%";
 
     private int minPrice;
     private int maxPrice;
     private int minSpeed;
     private int maxSpeed;
 
-    private String name = "Internet";
+    private int id;
+    private String name;
 
     public SearchCriteria() {
+    }
+
+    public SearchCriteria(Contract contract) {
+        id = contract.getTariffId();
+    }
+
+    public SearchCriteria(int id, String name, Map<String, Integer> valuesMap) {
+        this.id = id;
+        this.name = name;
+        minSpeed = valuesMap.get(PARAMETER_TARIFF_MIN_SPEED);
+        maxSpeed = valuesMap.get(PARAMETER_TARIFF_MAX_SPEED);
+        minPrice = valuesMap.get(PARAMETER_TARIFF_MIN_PRICE);
+        maxPrice = valuesMap.get(PARAMETER_TARIFF_MAX_PRICE);
     }
 
     public int getMinPrice() {
@@ -66,9 +81,16 @@ public class SearchCriteria {
 
     public String getName() {
         if (name == null) {
-            name = ANY_NAME_VALUE;
+            name = ANY_VALUE;
         }
-        return ANY_NAME_VALUE + name + ANY_NAME_VALUE;
+        return ANY_VALUE + name + ANY_VALUE;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

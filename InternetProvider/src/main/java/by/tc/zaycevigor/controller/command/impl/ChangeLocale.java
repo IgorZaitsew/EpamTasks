@@ -10,17 +10,20 @@ import javax.servlet.http.HttpSession;
 
 import by.tc.zaycevigor.controller.command.Command;
 
+import static by.tc.zaycevigor.controller.command.util.Constant.*;
+
 public class ChangeLocale implements Command {
+    private static final String LOCALE = "locale";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String newLocale;
         HttpSession session;
 
-        newLocale = request.getParameter("locale");
+        newLocale = request.getParameter(LOCALE);
         session = request.getSession(true);
-        session.setAttribute("locale", newLocale);
-        String url = (String) request.getSession(false).getAttribute("prev_request");
+        session.setAttribute(LOCALE, newLocale);
+        String url = (String) request.getSession(false).getAttribute(PREV_REQUEST);
         response.sendRedirect(url);
     }
 }

@@ -6,7 +6,7 @@ import by.tc.zaycevigor.entity.UserData;
 
 public interface UserDAO {
 
-    User authentification(String login, String password) throws DaoException;
+    User authentification(long contractNumber) throws DaoException;
 
     boolean registration(UserData userData) throws DaoException;
 }

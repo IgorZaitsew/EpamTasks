@@ -15,18 +15,23 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import org.apache.log4j.Logger;
 
+import static by.tc.zaycevigor.dao.util.Closer.close;
+import static by.tc.zaycevigor.dao.util.Constant.*;
+import static by.tc.zaycevigor.dao.util.IsUniqueCheck.isUniqueDatas;
+
 public class SQLUserDAO extends SqlDao implements UserDAO {
-    private static final String QUERY_REGISTRATE_USER = "INSERT INTO users (login, password, email)" +
-            " VALUES (?,?,?)";
-    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM users WHERE login=?";
     private static final String CON_POOL_CREATE_EXC = "Cannot create connection pool";
-    private static final String RES_SET_CLOSE_EXC = "Cannot close result set";
-    private static final String PREP_STAT_CLOSE_EXC = "Cannot close prepared statement";
-    private static final String QUERY_CHECK_EMAIL_USAGE = "SELECT COUNT(email) FROM users WHERE email=?";
-    private static final String QUERY_CHECK_LOGIN_USAGE = "SELECT COUNT(login) FROM users WHERE login=?";
 
-    private static Logger log = Logger.getLogger(SqlDao.class);
+    private static final String QUERY_REGISTRATE_USER = "INSERT INTO " + PARAMETER_USER_TABLE_NAME + " (" + PARAMETER_CONTRACT_NUMBER + ", " +
+            PARAMETER_EMAIL + ") VALUES (?,?)";
+    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM " + PARAMETER_USER_TABLE_NAME + " WHERE " +
+            PARAMETER_CONTRACT_NUMBER + "=?";
+    private static final String QUERY_CHECK_EMAIL_USAGE = "SELECT COUNT(" + PARAMETER_EMAIL + ") FROM " + PARAMETER_USER_TABLE_NAME +
+            " WHERE " + PARAMETER_EMAIL + "=?";
+    private static final String QUERY_CHECK_CONTRACT_NUMBER = "SELECT COUNT(" + PARAMETER_CONTRACT_NUMBER + ") FROM " +
+            PARAMETER_USER_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
 
+    private static Logger log = Logger.getLogger(SQLUserDAO.class);
     private static final ConnectionPoolImpl pool;
 
     static {
@@ -39,7 +44,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
     }
 
     @Override
-    public User authentification(String userLogin, String userPassword) throws DaoException {
+    public User authentification(long contractNumber) throws DaoException {
         Connection connection = pool.getConnection();
 
         PreparedStatement prepStatement = null;
@@ -48,18 +53,15 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
         try {
             prepStatement = connection.prepareStatement(QUERY_CHECK_CREDENTIONALS);
-            prepStatement.setString(1, userLogin);
+            prepStatement.setLong(1, contractNumber);
             resultSet = prepStatement.executeQuery();
             if (resultSet.next()) {
-                if (BCrypt.checkpw(userPassword, resultSet.getString("password"))) {
-                    user = createUser(resultSet);
-                }
+                user = createUser(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-
-            close(resultSet, prepStatement, connection);
+            close(pool, resultSet, prepStatement, connection);
         }
 
         return user;
@@ -68,40 +70,14 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     private User createUser(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setEmail(resultSet.getString("email"));
-        user.setLogin(resultSet.getString("login"));
-        user.setId(Integer.parseInt(resultSet.getString("id")));
-        user.setRole(resultSet.getString("role"));
-        user.setBanStatus(resultSet.getString("status"));
-        user.setBalance(Float.parseFloat(resultSet.getString("balance")));
+        user.setEmail(resultSet.getString(PARAMETER_EMAIL));
+        user.setContractNumber(resultSet.getLong(PARAMETER_CONTRACT_NUMBER));
+        user.setId(Integer.parseInt(resultSet.getString(PARAMETER_ID)));
+        user.setRole(resultSet.getString(PARAMETER_ROLE));
+        user.setBanStatus(resultSet.getString(PARAMETER_STATUS));
         return user;
 
     }
-
-
-    private void close(ResultSet rs, PreparedStatement st, Connection connection) throws DaoException {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-        } catch (SQLException e) {
-            log.error(RES_SET_CLOSE_EXC, e);
-            throw new DaoException(e);
-        }
-        try {
-            if (st != null) {
-                st.close();
-            }
-        } catch (SQLException e) {
-            log.error(PREP_STAT_CLOSE_EXC, e);
-            throw new DaoException(e);
-        }
-
-        if (connection != null) {
-            pool.releaseConnection(connection);
-        }
-    }
-
 
     @Override
     public boolean registration(UserData userData) throws DaoException {
@@ -109,49 +85,25 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         connection = pool.getConnection();
 
         PreparedStatement prepStatement = null;
-        ResultSet resultSet = null;
-        if (!isUniqueDatas(userData.getLogin(), userData.getEmail(), connection)) {
+        if (!isUniqueDatas(connection, String.valueOf(userData.getContractNumber()), QUERY_CHECK_CONTRACT_NUMBER, userData.getEmail(), QUERY_CHECK_EMAIL_USAGE)) {
             return false;
         }
-        boolean result;
+        int result;
         try {
             prepStatement = connection.prepareStatement(QUERY_REGISTRATE_USER);
 
-            prepStatement.setString(1, userData.getLogin());
-            prepStatement.setString(2, BCrypt.hashpw(userData.getPassword(), BCrypt.gensalt()));
-            prepStatement.setString(3, userData.getEmail());
+            prepStatement.setLong(1, userData.getContractNumber());
+            prepStatement.setString(2, userData.getEmail());
 
-            result = prepStatement.execute();
+            result = prepStatement.executeUpdate();
         } catch (SQLException e) {
             log.error(e);
             throw new DaoException(e);
 
         } finally {
-            close(resultSet, prepStatement, connection);
+            close(pool, prepStatement, connection);
         }
-        return result;
-    }
-
-    private boolean isUniqueDatas(String login, String email, Connection connection) throws DaoException {
-        return isUniqueData(email, QUERY_CHECK_EMAIL_USAGE, connection) &&
-                isUniqueData(login, QUERY_CHECK_LOGIN_USAGE, connection);
-    }
-
-    private boolean isUniqueData(String data, String query, Connection connection) throws DaoException {
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, data);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                if (resultSet.getInt(1) >= 0) {
-                    return false;
-                }
-            }
-        } catch (SQLException e) {
-            log.error(e);
-            throw new DaoException(e);
-        }
-        return true;
+        return result > 0;
     }
 
 }

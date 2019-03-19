@@ -10,4 +10,7 @@ public interface TariffService {
 
     List<Tariff> find(SearchCriteria criteria) throws DaoException;
 
+    List<Tariff> find(SearchCriteria criteria, int count) throws DaoException;
+
+    Tariff findSingle(SearchCriteria criteria) throws DaoException;
 }

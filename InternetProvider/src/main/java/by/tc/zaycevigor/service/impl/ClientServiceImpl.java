@@ -12,13 +12,19 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static by.tc.zaycevigor.service.util.ErrorMessages.CONTRACT_EXIST;
+import static by.tc.zaycevigor.service.util.ErrorMessages.USER_EXIST;
+
 public class ClientServiceImpl implements ClientService {
     private static Logger log = Logger.getLogger(ClientServiceImpl.class);
+    private StringBuilder errorMessage;
 
     @Override
-    public User authorization(String login, String password, HttpServletRequest request) throws ServiceException {
-
-        if (!UserValidator.isCorrect(login, password, request)) {
+    public User authorization(long contractNumber,HttpServletRequest request) throws ServiceException {
+        UserValidator validator = new UserValidator();
+        if (!validator.validate(request, contractNumber)) {
+            errorMessage = new StringBuilder();
+            errorMessage.append(validator.getErrorMessage());
             return null;
         }
 
@@ -27,7 +33,7 @@ public class ClientServiceImpl implements ClientService {
 
         User user;
         try {
-            user = userDAO.authentification(login, password);
+            user = userDAO.authentification(contractNumber);
         } catch (DaoException e) {
             throw new ServiceException();
         }
@@ -37,16 +43,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean registration(UserData user, HttpServletRequest request) throws ServiceException {
-
-        if (!UserValidator.isCorrect(user.getLogin(), user.getPassword(), user.getEmail(), request)) {
-            return false;
-        }
-
         DAOProvider daoProvider = DAOProvider.getInstance();
         UserDAO userDAO = daoProvider.getUserDAO();
 
         try {
-            if(!userDAO.registration(user)){
+            if (!userDAO.registration(user)) {
+                errorMessage = new StringBuilder();
+                errorMessage.append(USER_EXIST);
                 return false;
             }
 
@@ -57,4 +60,7 @@ public class ClientServiceImpl implements ClientService {
         return true;
     }
 
+    public String getErrorMessage() {
+        return errorMessage.toString();
+    }
 }

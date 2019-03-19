@@ -9,17 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.tc.zaycevigor.controller.JspPageName.MAIN_PAGE;
+import static by.tc.zaycevigor.controller.command.util.JspPageName.MAIN_PAGE;
+import static by.tc.zaycevigor.controller.command.util.Constant.PREV_REQUEST;
 
 
 public class GoToMainPageCommand implements Command {
-    private static Logger log = Logger.getLogger(RegistrationCommand.class);
+    private static Logger log = Logger.getLogger(UserRegistrationCommand.class);
 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = CreatorFullURL.create(request);
-        request.getSession(false).setAttribute("previous_url", url);
+        request.getSession(false).setAttribute(PREV_REQUEST, url);
         request.getRequestDispatcher(MAIN_PAGE).forward(request, response);
     }
 }

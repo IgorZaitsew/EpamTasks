@@ -7,7 +7,8 @@ import by.tc.zaycevigor.entity.Tariff;
 import by.tc.zaycevigor.entity.criteria.SearchCriteria;
 
 public interface TariffDAO {
-	
-	List<Tariff> find(SearchCriteria criteria) throws DaoException;
+
+    List<Tariff> find(SearchCriteria criteria) throws DaoException;
+    List<Tariff> find(SearchCriteria criteria,int count) throws DaoException;
 
 }

@@ -3,25 +3,36 @@ package by.tc.zaycevigor.entity;
 
 public class User {
     private int id;
-
-
-    private String password;
-    private String login;
-    private String tariffName;
     private String status;
     private String role;
     private double balance;
-    private AdressData adressData;
+    private long contractNumber;
     private String email;
-
 
     public User() {
 
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public long getContractNumber() {
+        return contractNumber;
+    }
+
+    public void setContractNumber(long contractNumber) {
+        this.contractNumber = contractNumber;
+    }
+
     public User(UserData data) {
-        login = data.getLogin();
+        contractNumber = data.getContractNumber();
         email = data.getEmail();
+        balance=0;
     }
 
     public int getId() {
@@ -32,28 +43,12 @@ public class User {
         this.id = id;
     }
 
-    public String getPassword() {
-        return password;
+    public long getLogin() {
+        return contractNumber;
     }
 
-    public void setPassword(String passwordHash) {
-        this.password = passwordHash;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getTariffName() {
-        return tariffName;
-    }
-
-    public void setTariffName(String tariffName) {
-        this.tariffName = tariffName;
+    public void setLogin(long contractNumber) {
+        this.contractNumber = contractNumber;
     }
 
     public String isBanStatus() {
