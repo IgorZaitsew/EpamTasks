@@ -1,9 +1,11 @@
 package by.tc.zaycevigor.entity;
 
+import java.math.BigDecimal;
+
 public class Tariff {
     private int id;
     private String name;
-    private float price;
+    private BigDecimal price;
     private float speed;
 
     public int getId() {
@@ -22,11 +24,11 @@ public class Tariff {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

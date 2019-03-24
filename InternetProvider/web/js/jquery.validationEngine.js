@@ -24,7 +24,7 @@ jQuery.fn.validationEngine = function(settings) {
 		allRules = {"required":{    			  // Add your regex rules here, you can take telephone as an example
 							"regex":"none",
 							"alertText":"Внимание! Поле не должно быть пустым!",
-							"alertTextCheckboxMultiple":"* Пожалуйста, выберите опцию",
+							"alertTexxtCheckboxMultiple":"* Пожалуйста, выберите опцию",
 							"alertTextCheckboxe":"* Опция не выбрана"},
 						"length":{
 							"regex":"Нет",

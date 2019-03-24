@@ -23,6 +23,7 @@
     <fmt:message bundle="${loc}" key="locale.navbar.tariff_list" var="tariff_list"/>
     <fmt:message bundle="${loc}" key="locale.navbar.exist_contract" var="exist_contract"/>
     <fmt:message bundle="${loc}" key="locale.navbar.new_contract" var="new_contract"/>
+    <fmt:message bundle="${loc}" key="locale.navbar.user_list" var="user_list"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,6 +43,12 @@
                        class="btn btn-outline-success">${tariff_list}</a>
 
                 </li>
+                <c:if test="${sessionScope.user.role=='admin'}">
+                    <li class="nav-item" style="margin: 5px">
+                        <a href="${pageContext.request.contextPath}/admin?command=user_list"
+                           class="btn btn-outline-success ">${user_list}</a>
+                    </li>
+                </c:if>
             </c:if>
         </ul>
         <nav class="navbar navbar-expand-lg navbar-light py-0">
@@ -56,8 +63,7 @@
                         <a class="navbar-brand"
                            href="${pageContext.request.contextPath}/secure?command=goToMainPage">
                             </c:if>
-                            <h3 style="font-weight: bold"><span style="color: darkslateblue">&lt;</span>epam<span
-                                    style="color: darkslateblue">&gt;</span> Internet</h3></a>
+                            <h3 style="font-weight: bold">Internet Provider</h3></a>
 
                 </div>
 

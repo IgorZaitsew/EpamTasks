@@ -1,4 +1,4 @@
-package by.tc.zaycevigor.controller.command.impl;
+package by.tc.zaycevigor.controller.command.impl.constant;
 
 import java.io.IOException;
 

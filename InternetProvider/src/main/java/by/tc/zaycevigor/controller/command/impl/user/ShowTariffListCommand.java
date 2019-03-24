@@ -1,10 +1,10 @@
-package by.tc.zaycevigor.controller.command.impl;
+package by.tc.zaycevigor.controller.command.impl.user;
 
 import by.tc.zaycevigor.controller.command.Command;
 import by.tc.zaycevigor.controller.command.util.CreatorFullURL;
-import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.entity.Tariff;
 import by.tc.zaycevigor.entity.criteria.SearchCriteria;
+import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
 import by.tc.zaycevigor.service.TariffService;
 import org.apache.log4j.Logger;
@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Map;
 
 import static by.tc.zaycevigor.controller.command.util.Constant.*;
-import static by.tc.zaycevigor.controller.command.util.JspPageName.TARIFF_PAGE;
+import static by.tc.zaycevigor.controller.command.util.JspPageName.*;
 
 public class ShowTariffListCommand implements Command {
-    private static Logger log = Logger.getLogger(ShowPersonalDataCommand.class);
+    private static final Logger log = Logger.getLogger(ShowTariffListCommand.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,8 +43,9 @@ public class ShowTariffListCommand implements Command {
 
         try {
             tariffList = tariffService.find(new SearchCriteria(id, name, valuesMap));
-        } catch (DaoException e) {
+        } catch (ServiceException e) {
             log.error(e);
+            response.sendRedirect(ERROR_PAGE);
         }
         request.setAttribute(ATTRIBUTE_TARIFFS, tariffList);
         RequestDispatcher dispatcher = request.getRequestDispatcher(TARIFF_PAGE);

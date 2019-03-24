@@ -14,6 +14,7 @@ public class ContractData {
     private String street;
     private String houseNumber;
     private String email;
+    private String password;
 
     public String getEmail() {
         return email;

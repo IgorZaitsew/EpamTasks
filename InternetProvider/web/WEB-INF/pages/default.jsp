@@ -9,21 +9,14 @@
 <head>
     <meta charset="utf-8">
     <title>Default page</title>
-    <style>
-    h1 {
-        font-size: 20pt;
-    }
-</style>
 </head>
 <body>
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="locale" var="loc"/>
 <fmt:message bundle="${loc}" key="locale.default.welcom_message" var="welcom_message"/>
-<fmt:message bundle="${loc}" key="locale.default.authorizate" var="authorization"/>
-<fmt:message bundle="${loc}" key="locale.default.registrate" var="registration"/>
 
-<h1>${welcom_message}</h1>
+<h4>${welcom_message}</h4>
 
 </body>
 </html>

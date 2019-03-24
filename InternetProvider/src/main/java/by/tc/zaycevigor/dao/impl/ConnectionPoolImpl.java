@@ -3,8 +3,6 @@ package by.tc.zaycevigor.dao.impl;
 import by.tc.zaycevigor.dao.ConnectionPool;
 
 import by.tc.zaycevigor.dao.exception.ConnectionPoolException;
-import org.apache.log4j.Logger;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,7 +13,6 @@ public class ConnectionPoolImpl implements ConnectionPool {
     public static final String MAX_SIZE_REACHED_EXC = "Maximum pool size reached, no available connections";
     public static final String CREATE_CON_EXC = "Cannot create connection";
 
-    private static Logger log = Logger.getLogger(SqlDao.class);
     private String url;
     private String user;
     private String password;
@@ -50,11 +47,9 @@ public class ConnectionPoolImpl implements ConnectionPool {
                 try {
                     connectionPool.add(createConnection(url, user, password));
                 } catch (SQLException e) {
-                    log.error(CREATE_CON_EXC);
                     throw new ConnectionPoolException(CREATE_CON_EXC, e);
                 }
             } else {
-                log.error(MAX_SIZE_REACHED_EXC);
                 throw new ConnectionPoolException(MAX_SIZE_REACHED_EXC);
             }
         }

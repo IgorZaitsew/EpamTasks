@@ -1,7 +1,6 @@
 package by.tc.zaycevigor.dao.util;
 
 import by.tc.zaycevigor.dao.exception.DaoException;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +19,6 @@ public final class IsUniqueCheck {
 
     private IsUniqueCheck(){}
 
-    private static final Logger log = Logger.getLogger(IsUniqueCheck.class);
     public static boolean isUniqueDatas(Connection connection, String... args) throws DaoException {
         for (int i = 0; i < args.length - 1; i+=2) {
             if (!isUniqueData(connection,args[i], args[i + 1])) {
@@ -41,7 +39,6 @@ public final class IsUniqueCheck {
                 }
             }
         } catch (SQLException e) {
-            log.error(e);
             throw new DaoException(e);
         }
         return true;

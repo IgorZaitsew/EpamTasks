@@ -1,4 +1,4 @@
-package by.tc.zaycevigor.controller.command.impl;
+package by.tc.zaycevigor.controller.command.impl.guest;
 
 import java.io.IOException;
 
@@ -15,14 +15,14 @@ import by.tc.zaycevigor.service.ClientService;
 import by.tc.zaycevigor.service.ContractService;
 import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
-import by.tc.zaycevigor.service.impl.ClientServiceImpl;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import static by.tc.zaycevigor.controller.command.util.JspPageName.*;
 import static by.tc.zaycevigor.controller.command.util.Constant.*;
 
 public class AuthorizationCommand implements Command {
-    private static final Logger log = Logger.getLogger(AuthorizationCommand.class);
+    private static final Logger log = LogManager.getRootLogger();
     private static final String DATA_ERROR = "error";
 
     @Override
@@ -43,9 +43,8 @@ public class AuthorizationCommand implements Command {
             if (contract == null) {
                 String errorMessage = CONTRACT_NOT_FOUND;
                 response.sendRedirect(GO_TO_AUTHORISATION_PAGE + errorMessage);
-                System.out.println(errorMessage);
             } else {
-                User user = service.authorization(contractNumber, request);
+                User user = service.getUser(contractNumber, request);
                 session.setAttribute(PARAMETER_USER, user);
                 session.setAttribute(PARAMETER_CONTRACT, contract);
                 response.sendRedirect(GO_TO_MAIN_PAGE);
@@ -55,5 +54,4 @@ public class AuthorizationCommand implements Command {
             response.sendRedirect(GO_TO_ERROR_PAGE);
         }
     }
-
 }

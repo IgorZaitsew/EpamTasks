@@ -7,9 +7,13 @@ import by.tc.zaycevigor.entity.ContractData;
 public interface ContractDAO {
     Contract contractAuthentification(long contractNumber, String password) throws DaoException;
 
-    public boolean addContract(ContractData contractData) throws DaoException;
+    Contract getContract(long contractNumber) throws DaoException;
 
-    public boolean changeTariff(long contractNumber, int tariffId) throws DaoException;
+    boolean addContract(ContractData contractData) throws DaoException;
 
-    public long getContractNumber();
+    boolean changeTariff(long contractNumber, int tariffId) throws DaoException;
+
+    long getContractNumber();
+
+    boolean deleteContract(long contractNumber) throws DaoException;
 }

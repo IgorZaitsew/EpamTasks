@@ -1,16 +1,15 @@
-package by.tc.zaycevigor.controller.command.impl;
+package by.tc.zaycevigor.controller.command.impl.user;
 
 import by.tc.zaycevigor.controller.command.Command;
 import by.tc.zaycevigor.controller.command.util.CreatorFullURL;
-import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.service.ContractService;
 import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
 import by.tc.zaycevigor.service.impl.ContractServiceImpl;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +21,7 @@ import static by.tc.zaycevigor.controller.command.util.JspPageName.*;
 
 public class ChangeTariffCommand implements Command {
 
-    private static Logger log = Logger.getLogger(ChangeTariffCommand.class);
+    private static final Logger log = LogManager.getRootLogger();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

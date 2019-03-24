@@ -6,7 +6,6 @@ import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.util.MessageSender;
 import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.entity.ContractData;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +36,8 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
             ")VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public static final String QUERY_UPDATE_TARIFF_ID = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " + PARAMETER_TARIFF_ID +
             "=? WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
-    private static Logger log = Logger.getLogger(SQLContractDAO.class);
+    private static final String QUERY_DELETE_CONTRACT = "DELETE FROM " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
+
     private static final ConnectionPoolImpl pool;
     private static MessageSender tlsSender;
     private long contractNumber;
@@ -46,7 +46,6 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         try {
             pool = ConnectionPoolImpl.create(url, login, password);
         } catch (SQLException e) {
-            log.error(CON_POOL_CREATE_EXC);
             throw new ConnectionPoolException(e);
         }
     }
@@ -66,6 +65,28 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
                 if (BCrypt.checkpw(contractPassword, resultSet.getString(PARAMETER_PASSWORD))) {
                     contract = createContract(resultSet);
                 }
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, resultSet, prepStatement, connection);
+        }
+        return contract;
+    }
+
+    @Override
+    public Contract getContract(long contractNumber) throws DaoException {
+        Connection connection = pool.getConnection();
+
+        PreparedStatement prepStatement = null;
+        ResultSet resultSet = null;
+        Contract contract = null;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_CHECK_CREDENTIONALS);
+            prepStatement.setLong(1, contractNumber);
+            resultSet = prepStatement.executeQuery();
+            if (resultSet.next()) {
+                contract = createContract(resultSet);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -107,7 +128,6 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
 
             result = prepStatement.executeUpdate();
         } catch (SQLException e) {
-            log.error(e);
             throw new DaoException(e);
 
         } finally {
@@ -129,7 +149,6 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
             prepStatement.setLong(2, contractNumber);
             result = prepStatement.executeUpdate();
         } catch (SQLException e) {
-            log.error(e);
             throw new DaoException(e);
 
         } finally {
@@ -147,8 +166,8 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         contract.setCity(resultSet.getString(PARAMETER_CITY));
         contract.setStreet(resultSet.getString(PARAMETER_STREET));
         contract.setHouseNumber(resultSet.getString(PARAMETER_HOUSE_NUMBER));
-        contract.setBalance(Float.parseFloat(resultSet.getString(PARAMETER_BALANCE)));
-        contract.setTariffId(Integer.parseInt(resultSet.getString(PARAMETER_TARIFF_ID)));
+        contract.setBalance(resultSet.getBigDecimal(PARAMETER_BALANCE));
+        contract.setTariffId(resultSet.getInt(PARAMETER_TARIFF_ID));
         return contract;
     }
 
@@ -156,6 +175,25 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         tlsSender = new MessageSender();
         String text = MESSAGE_CONTRACT_NUMBER + contractNumber + MESSAGE_PASSWORD + password;
         tlsSender.send(MESSAGE_SUBJECT, text, email);
+    }
+
+    @Override
+    public boolean deleteContract(long contractNumber) throws DaoException {
+        Connection connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+
+        int result;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_DELETE_CONTRACT);
+            prepStatement.setLong(1, contractNumber);
+
+            result = prepStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result > 0;
     }
 
     @Override

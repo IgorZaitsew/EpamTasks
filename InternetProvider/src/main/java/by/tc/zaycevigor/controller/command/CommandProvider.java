@@ -3,7 +3,10 @@ package by.tc.zaycevigor.controller.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.tc.zaycevigor.controller.command.impl.*;
+import by.tc.zaycevigor.controller.command.impl.admin.*;
+import by.tc.zaycevigor.controller.command.impl.constant.*;
+import by.tc.zaycevigor.controller.command.impl.guest.*;
+import by.tc.zaycevigor.controller.command.impl.user.*;
 
 public class CommandProvider {
 
@@ -15,10 +18,8 @@ public class CommandProvider {
 
         commands.put("goToContractRegistration", new GoToContractRegistrationCommand());
         commands.put("contractRegistration", new ContractRegistrationCommand());
-        commands.put("goToContractRegistrationResult", new GoToContractRegistrationResultCommand());
 
         commands.put("userRegistration", new UserRegistrationCommand());
-        commands.put("goToUserRegistration", new GoToUserRegistrationCommand());
 
         commands.put("change_locale", new ChangeLocale());
         commands.put("goToIndex", new GoToIndexPageCommand());
@@ -34,6 +35,21 @@ public class CommandProvider {
         commands.put("changeTariff", new ChangeTariffCommand());
         commands.put("goToChangeTariffPage", new GoToChangingTariffPageCommand());
         commands.put("goToChangeResult", new GoToChangingResultCommand());
+        commands.put("goToUserList", new GoToUserListCommand());
+        commands.put("user_list", new ShowUserListCommand());
+
+        commands.put("user_delete", new UserDeleteCommand());
+        commands.put("goToUserDeleteConfirm", new GoToUserDeletePageCommand());
+        commands.put("goToUserDeleteSuccess", new GoToUserDeleteSuccessCommand());
+
+        commands.put("goToUserAddSuccess", new GoToUserAddSuccessCommand());
+
+        commands.put("user_info", new ShowUserInfoCommand());
+        commands.put("goToUserInfoPage", new GoToUserInfoPageCommand());
+
+        commands.put("tariff_add_page", new GoToTariffAddPageCommand());
+        commands.put("goToTariffAddSuccessPage", new GoToTariffAddSuccessPageCommand());
+        commands.put("tariff_add", new TariffAddCommand());
     }
 
     public Command getCommand(String commandName) {

@@ -1,4 +1,4 @@
-package by.tc.zaycevigor.controller.command.impl;
+package by.tc.zaycevigor.controller.command.impl.guest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.tc.zaycevigor.service.impl.ClientServiceImpl;
-import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
@@ -17,15 +16,13 @@ import by.tc.zaycevigor.entity.UserData;
 import by.tc.zaycevigor.service.ClientService;
 import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
-
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import static by.tc.zaycevigor.controller.command.util.JspPageName.*;
 import static by.tc.zaycevigor.controller.command.util.Constant.*;
 
 public class UserRegistrationCommand implements Command {
-    private static Logger log = Logger.getLogger(UserRegistrationCommand.class);
-
-
-    private static final String SERVICE_EXC_LOG = "Contract number or email is not correct";
+    private static final Logger log = LogManager.getRootLogger();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,15 +39,19 @@ public class UserRegistrationCommand implements Command {
         session.removeAttribute(PARAMETER_EMAIL);
         try {
             if (service.registration(userData, request)) {
-                User user = new User(userData);
-                session.setAttribute(PARAMETER_USER, user);
-                response.sendRedirect(GO_TO_MAIN_PAGE);
+                if(!((User)session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
+                    User user = new User(userData);
+                    session.setAttribute(PARAMETER_USER, user);
+                    response.sendRedirect(GO_TO_MAIN_PAGE);
+                }else{
+                    response.sendRedirect(GO_TO_USER_ADD_SUCCESS_PAGE);
+                }
             } else {
                 String errorMessage = ((ClientServiceImpl) service).getErrorMessage();
-                response.sendRedirect(GO_TO_USER_REGISTRATION + errorMessage);
+                response.sendRedirect(GO_TO_CONTRACT_REGISTRATION_PAGE + errorMessage);
             }
         } catch (ServiceException e) {
-            log.error(SERVICE_EXC_LOG, e);
+            log.error(e);
             response.sendRedirect(GO_TO_ERROR_PAGE);
         }
 

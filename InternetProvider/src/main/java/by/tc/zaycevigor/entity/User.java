@@ -1,13 +1,16 @@
 package by.tc.zaycevigor.entity;
 
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public class User {
     private int id;
     private String status;
     private String role;
-    private double balance;
     private long contractNumber;
     private String email;
+
 
     public User() {
 
@@ -32,7 +35,6 @@ public class User {
     public User(UserData data) {
         contractNumber = data.getContractNumber();
         email = data.getEmail();
-        balance=0;
     }
 
     public int getId() {
@@ -67,14 +69,6 @@ public class User {
         this.role = role;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -83,5 +77,31 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", role='" + role + '\'' +
+                ", contractNumber=" + contractNumber +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                contractNumber == user.contractNumber &&
+                Objects.equals(status, user.status) &&
+                Objects.equals(role, user.role) &&
+                Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, status, role, contractNumber, email);
+    }
 }

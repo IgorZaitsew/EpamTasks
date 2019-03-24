@@ -10,7 +10,6 @@
     <meta charset="utf-8">
     <title>User registration</title>
 </head>
-<body>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="locale" var="loc"/>
 <fmt:message bundle="${loc}" key="locale.contract_reg.enter_name" var="enter_name"/>
@@ -29,6 +28,7 @@
 <fmt:message bundle="${loc}" key="locale.contract_reg.passport_id_error" var="passport_id_error"/>
 <fmt:message bundle="${loc}" key="locale.contract_reg.add" var="add"/>
 <fmt:message bundle="${loc}" key="locale.contract_reg.email_exist" var="email_exist"/>
+<body>
 <div class="container">
     <div class="row">
         <div class="col-sm">

@@ -17,4 +17,13 @@ public class ErrorMessages {
     public static final String HOUSE_NUMBER_ERROR = "incorrectHouseNumber=true&";
     public static final String PASSPORT_ID_ERROR = "incorrectPassportId=true&";
     public static final String TARIFF_ID_ERROR = "incorrectTariffId=true&";
+    public static final String USER_DELETE_ERROR = "userDeleteError=true&";
+    public static final String CONTRACT_DELETE_ERROR = "contractDeleteError=true&";
+    public static final String USER_ROLE_ERROR = "userRoleError=true&";
+    public static final String USER_STATUS_ERROR = "userStatusError=true&";
+
+    public static final String TARIFF_NAME_ERROR = "incorrectTariffName=true&";
+    public static final String TARIFF_SPEED_ERROR = "incorrectTariffSpeed=true&";
+    public static final String TARIFF_PRICE_ERROR = "incorrectTariffPrice=true&";
+    public static final String TARIFF_EXIST = "tariffExist=true&";
 }

@@ -1,8 +1,12 @@
 package by.tc.zaycevigor.entity;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public class Contract {
+    private static final int BASIC_BALANCE=0;
     private long contractNumber;
-    private float balance;
+    private BigDecimal balance;
     private String passportId;
     private int tariffId;
     private String name;
@@ -11,6 +15,9 @@ public class Contract {
     private String street;
     private String houseNumber;
 
+    {
+        balance=new BigDecimal(BASIC_BALANCE);
+    }
     public Contract() {
 
     }
@@ -57,11 +64,11 @@ public class Contract {
         this.houseNumber = houseNumber;
     }
 
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -95,5 +102,41 @@ public class Contract {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "contractNumber=" + contractNumber +
+                ", balance=" + balance +
+                ", passportId='" + passportId + '\'' +
+                ", tariffId=" + tariffId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contract contract = (Contract) o;
+        return contractNumber == contract.contractNumber &&
+                tariffId == contract.tariffId &&
+                balance.equals(contract.balance) &&
+                Objects.equals(passportId, contract.passportId) &&
+                Objects.equals(name, contract.name) &&
+                Objects.equals(surname, contract.surname) &&
+                Objects.equals(city, contract.city) &&
+                Objects.equals(street, contract.street) &&
+                Objects.equals(houseNumber, contract.houseNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contractNumber, balance, passportId, tariffId, name, surname, city, street, houseNumber);
     }
 }

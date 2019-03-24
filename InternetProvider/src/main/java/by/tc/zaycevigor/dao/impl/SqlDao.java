@@ -4,10 +4,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import by.tc.zaycevigor.dao.exception.NotDBDriverException;
-import org.apache.log4j.Logger;
 
 public abstract class SqlDao {
-    private static Logger log = Logger.getLogger(SqlDao.class);
     protected static final String driver;
     protected static final String url;
     protected static final String login;
@@ -37,7 +35,6 @@ public abstract class SqlDao {
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
-            log.error("Can't find driver", e);
             throw new NotDBDriverException("Can't find driver.", e);
         }
     }

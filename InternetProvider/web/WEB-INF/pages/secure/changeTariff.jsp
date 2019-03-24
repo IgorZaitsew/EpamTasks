@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<form class="form-horizontal" action="/secure?command=changeTariff&tariff_id=${requestScope.tariff_id}" method="post">
+<form class="form-horizontal" action="${pageContext.request.contextPath}/secure?command=changeTariff&tariff_id=${requestScope.tariff_id}" method="post">
     <fieldset>
         <div class="alert alert-success" role="alert">
             ${confirm_text}${requestScope.name}?
@@ -26,19 +26,5 @@
         </div>
     </fieldset>
 </form>
-<c:if test="${param.incorrectContractNumber==true}">
-    <h3>
-        <div class="alert alert-success">
-            <strong><c:out value="${error_contract}"/></strong>
-        </div>
-    </h3>
-</c:if>
-<c:if test="${param.incorrectPassword==true}">
-    <h4>
-        <div class="alert alert-success">
-            <strong><c:out value="${error_password}"/></strong>
-        </div>
-    </h4>
-</c:if>
 </body>
 </html>
