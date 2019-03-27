@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-public class MessageSender extends Thread{
+public class MessageSender {
     private static String password = "864iyr468ryi";
     private static String emailAdress = "igorzaycev2853@gmail.com";
     private static Properties props;
@@ -24,8 +24,8 @@ public class MessageSender extends Thread{
         props.put("mail.smtp.port", "587");
     }
 
-    public void run(String subject, String text, String toEmail){
-        send(subject,text,toEmail);
+    public void run(String subject, String text, String toEmail) {
+        send(subject, text, toEmail);
     }
 
     private void send(String subject, String text, String toEmail) {
@@ -41,7 +41,6 @@ public class MessageSender extends Thread{
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(subject);
             message.setText(text);
-
             Transport.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);

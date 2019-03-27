@@ -44,7 +44,6 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     private static final String QUERY_UPDATE_BALANCE = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " +
             PARAMETER_BALANCE + " =? WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
     private static final ConnectionPoolImpl pool;
-    private static MessageSender tlsSender;
     private long contractNumber;
 
     static {
@@ -222,9 +221,8 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
      * @param email
      */
     private void sendEmail(long contractNumber, String password, String email) {
-        tlsSender = new MessageSender();
         String text = MESSAGE_CONTRACT_NUMBER + contractNumber + MESSAGE_PASSWORD + password;
-        tlsSender.run(MESSAGE_SUBJECT, text, email);
+        new MessageSender().run(MESSAGE_SUBJECT, text, email);
     }
 
     /**
