@@ -40,7 +40,12 @@ public class SQLTariffDAO extends SqlDao implements TariffDAO {
         }
     }
 
-
+    /**
+     * return tariff list satisfying the specified criteria
+     * @param criteria
+     * @return
+     * @throws DaoException
+     */
     @Override
     public List<Tariff> find(SearchCriteria criteria) throws DaoException {
         Connection connection = pool.getConnection();
@@ -74,6 +79,13 @@ public class SQLTariffDAO extends SqlDao implements TariffDAO {
         return tariffList;
     }
 
+    /**
+     *  return tariff list satisfying the specified criteria with count size
+     * @param criteria
+     * @param count
+     * @return
+     * @throws DaoException
+     */
     @Override
     public List<Tariff> find(SearchCriteria criteria, int count) throws DaoException {
         Connection connection = pool.getConnection();
@@ -108,6 +120,12 @@ public class SQLTariffDAO extends SqlDao implements TariffDAO {
         return tariffList;
     }
 
+    /**
+     * add tariff with data to DB
+     * @param data
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean add(TariffData data) throws DaoException {
         Connection connection;
@@ -135,6 +153,12 @@ public class SQLTariffDAO extends SqlDao implements TariffDAO {
         return result > 0;
     }
 
+    /**
+     * creates the instance of tariff by result set
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Tariff createTariff(ResultSet resultSet) throws SQLException {
         Tariff tariff = new Tariff();
         tariff.setId(resultSet.getInt(PARAMETER_ID));

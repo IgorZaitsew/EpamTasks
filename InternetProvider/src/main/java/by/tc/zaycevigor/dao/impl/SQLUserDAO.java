@@ -41,6 +41,12 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         }
     }
 
+    /**
+     * return user with contract number specified in params
+     * @param contractNumber
+     * @return
+     * @throws DaoException
+     */
     @Override
     public User getUser(long contractNumber) throws DaoException {
         Connection connection = pool.getConnection();
@@ -65,7 +71,12 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         return user;
     }
 
-
+    /**
+     * creates the instance of user by result set
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private User createUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setEmail(resultSet.getString(PARAMETER_EMAIL));
@@ -77,6 +88,12 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     }
 
+    /**
+     * add user with userData to DB
+     * @param userData
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean registration(UserData userData) throws DaoException {
         Connection connection;
@@ -103,6 +120,11 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         return result > 0;
     }
 
+    /**
+     * return all users,contains at DB
+     * @return
+     * @throws DaoException
+     */
     @Override
     public List<User> getUserList() throws DaoException {
         Connection connection = pool.getConnection();
@@ -124,6 +146,12 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         return userList;
     }
 
+    /**
+     * removes user with contract number specified at params from DB
+     * @param contractNumber
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean deleteUser(long contractNumber) throws DaoException {
         Connection connection = pool.getConnection();

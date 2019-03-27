@@ -168,6 +168,13 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return result > 0;
     }
 
+    /**
+     * changes the id in the contract determined by the contract number
+     * @param contractNumber
+     * @param tariffId
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean changeTariff(long contractNumber, int tariffId) throws DaoException {
         Connection connection;
@@ -188,6 +195,12 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return result > 0;
     }
 
+    /**
+     * create instance of Contract by result set data
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Contract createContract(ResultSet resultSet) throws SQLException {
         Contract contract = new Contract();
         contract.setContractNumber(resultSet.getLong(PARAMETER_CONTRACT_NUMBER));
@@ -202,12 +215,24 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return contract;
     }
 
+    /**
+     * send email with contract number and password to registrated user
+     * @param contractNumber
+     * @param password
+     * @param email
+     */
     private void sendEmail(long contractNumber, String password, String email) {
         tlsSender = new MessageSender();
         String text = MESSAGE_CONTRACT_NUMBER + contractNumber + MESSAGE_PASSWORD + password;
         tlsSender.run(MESSAGE_SUBJECT, text, email);
     }
 
+    /**
+     * removes contract from DB
+     * @param contractNumber
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean deleteContract(long contractNumber) throws DaoException {
         Connection connection = pool.getConnection();
@@ -232,6 +257,13 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return contractNumber;
     }
 
+    /**
+     * increases the balance in the account with the specified contract number
+     * @param newBalance
+     * @param contractNumber
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean upBalance(BigDecimal newBalance, long contractNumber) throws DaoException {
         Connection connection;
