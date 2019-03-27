@@ -1,5 +1,6 @@
 package by.tc.zaycevigor.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import by.tc.zaycevigor.dao.TariffDAO;

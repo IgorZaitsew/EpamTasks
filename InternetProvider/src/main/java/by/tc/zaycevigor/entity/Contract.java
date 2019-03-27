@@ -1,9 +1,14 @@
 package by.tc.zaycevigor.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Contract {
+/**
+ *Used to store contract data in a session
+ */
+public class Contract implements Serializable {
+    /**Balance established at the conclusion of a new contract*/
     private static final int BASIC_BALANCE=0;
     private long contractNumber;
     private BigDecimal balance;

@@ -27,6 +27,8 @@ public class CommandProvider {
         commands.put("goToMainPage", new GoToMainPageCommand());
 
         commands.put("personalData", new ShowPersonalDataCommand());
+        commands.put("goToPersonalDataCommand", new GoToPersonalDataCommand());
+        commands.put("up_balance", new UpBalanceCommand());
         commands.put("exit", new ExitCommand());
         commands.put("tariffList", new ShowTariffListCommand());
         commands.put("goToTariffList", new GoToTariffListCommand());

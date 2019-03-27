@@ -31,7 +31,6 @@ public class UserRegistrationCommand implements Command {
         session.setAttribute(PREV_REQUEST, url);
         ServiceProvider provider = ServiceProvider.getInstance();
         ClientService service = provider.getClientService();
-
         UserData userData = new UserData();
         userData.setContractNumber((Long) session.getAttribute(PARAMETER_CONTRACT_NUMBER));
         userData.setEmail((String) session.getAttribute(PARAMETER_EMAIL));
@@ -39,8 +38,9 @@ public class UserRegistrationCommand implements Command {
         session.removeAttribute(PARAMETER_EMAIL);
         try {
             if (service.registration(userData, request)) {
-                if(!((User)session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
-                    User user = new User(userData);
+                User user = ((User) session.getAttribute(PARAMETER_USER));
+                if (user == null || !user.getRole().equals(ADMIN_ROLE)) {
+                    user = new User(userData);
                     session.setAttribute(PARAMETER_USER, user);
                     response.sendRedirect(GO_TO_MAIN_PAGE);
                 }else{

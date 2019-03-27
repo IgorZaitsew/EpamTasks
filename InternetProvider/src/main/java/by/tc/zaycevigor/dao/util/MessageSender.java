@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-public class MessageSender {
+public class MessageSender extends Thread{
     private static String password = "864iyr468ryi";
     private static String emailAdress = "igorzaycev2853@gmail.com";
     private static Properties props;
@@ -24,7 +24,11 @@ public class MessageSender {
         props.put("mail.smtp.port", "587");
     }
 
-    public void send(String subject, String text, String toEmail) {
+    public void run(String subject, String text, String toEmail){
+        send(subject,text,toEmail);
+    }
+
+    private void send(String subject, String text, String toEmail) {
         Session session = Session.getDefaultInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(emailAdress, password);

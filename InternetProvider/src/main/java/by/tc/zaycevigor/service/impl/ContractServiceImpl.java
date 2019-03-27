@@ -13,6 +13,8 @@ import by.tc.zaycevigor.service.validation.ContractValidator;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.math.BigDecimal;
+
 import static by.tc.zaycevigor.dao.util.Constant.ADMIN_ROLE;
 import static by.tc.zaycevigor.dao.util.Constant.PARAMETER_USER;
 import static by.tc.zaycevigor.service.util.ErrorMessages.*;
@@ -45,7 +47,6 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public Contract getContract(long contractNumber, HttpServletRequest request) throws ServiceException {
         if (!((User)request.getSession(false).getAttribute(Constant.PARAMETER_USER)).getRole().equals(Constant.ADMIN_ROLE)) {
-            System.out.println(((User)request.getSession(false).getAttribute(Constant.PARAMETER_USER)).getRole());
             throw new ServiceException();
         }
         DAOProvider daoProvider = DAOProvider.getInstance();
@@ -125,6 +126,28 @@ public class ContractServiceImpl implements ContractService {
             errorMessage = new StringBuilder(CONTRACT_DELETE_ERROR);
         }
         return result;
+    }
+
+    @Override
+    public boolean upBalance(BigDecimal amount,BigDecimal balance, long contractNumber, HttpServletRequest request) throws ServiceException {
+        DAOProvider daoProvider = DAOProvider.getInstance();
+        ContractDAO contractDAO = daoProvider.getContractDAO();
+        ContractValidator validator = new ContractValidator();
+        if (!validator.validate( amount,request)) {
+            errorMessage = new StringBuilder();
+            errorMessage.append(validator.getErrorMessage());
+            return false;
+        }
+        try {
+            if (!contractDAO.upBalance(amount.add(balance),contractNumber)) {
+                errorMessage = new StringBuilder();
+                errorMessage.append(TARIFF_EXIST);
+                return false;
+            }
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+        return true;
     }
 
     public String getErrorMessage() {

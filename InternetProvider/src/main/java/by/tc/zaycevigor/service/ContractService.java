@@ -4,6 +4,7 @@ import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.entity.ContractData;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 
 public interface ContractService {
     Contract contractAuthentification(long contractNumber, String password, HttpServletRequest request) throws ServiceException;
@@ -17,4 +18,6 @@ public interface ContractService {
     long getContractNumber();
 
     boolean deleteContract(long contractNumber) throws ServiceException;
+
+    boolean upBalance(BigDecimal amount, BigDecimal balance,long contractNumber, HttpServletRequest request) throws ServiceException;
 }

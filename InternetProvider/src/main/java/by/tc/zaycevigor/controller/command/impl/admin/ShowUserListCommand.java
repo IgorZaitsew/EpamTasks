@@ -35,7 +35,7 @@ public class ShowUserListCommand implements Command {
             response.sendRedirect(GO_TO_USER_LIST_COMMAND);
         } catch (ServiceException e) {
             log.error(e);
-            response.sendRedirect(ERROR_PAGE);
+            response.sendRedirect(GO_TO_ERROR_PAGE);
         }
     }
 }

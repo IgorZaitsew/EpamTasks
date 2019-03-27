@@ -78,10 +78,8 @@ public class UserValidator {
     private boolean isEmailCorrect(String email) {
         Matcher m = EMAIL.matcher(email);
         if (m.find()) {
-            System.out.println("true");
             return true;
         } else {
-            System.out.println("false");
             errorMessage.append(EMAIL_ERROR);
             return false;
         }

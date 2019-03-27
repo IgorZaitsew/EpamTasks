@@ -30,13 +30,14 @@ public class AuthorizationCommand implements Command {
         long contractNumber = Long.parseLong(request.getParameter(PARAMETER_CONTRACT_NUMBER));
         String password = request.getParameter(PARAMETER_PASSWORD);
         String url = CreatorFullURL.create(request);
-        request.getSession(true).setAttribute(PREV_REQUEST, url);
+        HttpSession session = request.getSession(true);
+        session.setAttribute(PREV_REQUEST, url);
 
         ServiceProvider provider = ServiceProvider.getInstance();
         ClientService service = provider.getClientService();
         ContractService contractService = provider.getContractService();
 
-        HttpSession session = request.getSession(true);
+
 
         try {
             Contract contract = contractService.contractAuthentification(contractNumber, password, request);

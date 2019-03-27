@@ -26,4 +26,6 @@ public class ErrorMessages {
     public static final String TARIFF_SPEED_ERROR = "incorrectTariffSpeed=true&";
     public static final String TARIFF_PRICE_ERROR = "incorrectTariffPrice=true&";
     public static final String TARIFF_EXIST = "tariffExist=true&";
+
+    public static final String BALANCE_UP_AMOUNT_ERROR = "amountError=true&";
 }

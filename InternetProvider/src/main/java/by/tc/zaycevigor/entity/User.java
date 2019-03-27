@@ -1,13 +1,22 @@
 package by.tc.zaycevigor.entity;
 
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class User {
+/**
+ *Used to store user data in a session
+ */
+public class User implements Serializable {
     private int id;
+
+    /** Free or banned - depends on the state of balance of the user */
     private String status;
+
+    /** Admin or user. Defines privileges */
     private String role;
+
     private long contractNumber;
     private String email;
 
@@ -32,6 +41,10 @@ public class User {
         this.contractNumber = contractNumber;
     }
 
+    /**
+     * Used when creating a user based on registration data and randomly generated contract number
+     * @param data contains the contract number generated in the DAO method and the email entered by the user
+     */
     public User(UserData data) {
         contractNumber = data.getContractNumber();
         email = data.getEmail();

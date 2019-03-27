@@ -4,9 +4,11 @@ import by.tc.zaycevigor.dao.ContractDAO;
 import by.tc.zaycevigor.dao.exception.ConnectionPoolException;
 import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.util.MessageSender;
+import by.tc.zaycevigor.dao.util.RandomGenerator;
 import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.entity.ContractData;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import static by.tc.zaycevigor.dao.util.Closer.close;
 import static by.tc.zaycevigor.dao.util.Constant.*;
 import static by.tc.zaycevigor.dao.util.IsUniqueCheck.isUniqueDatas;
+import static by.tc.zaycevigor.entity.ContractData.CONTRACT_NUMBER_SIZE;
+import static by.tc.zaycevigor.entity.ContractData.PASSWORD_SIZE;
 
 
 public class SQLContractDAO extends SqlDao implements ContractDAO {
@@ -37,7 +41,8 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     public static final String QUERY_UPDATE_TARIFF_ID = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " + PARAMETER_TARIFF_ID +
             "=? WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
     private static final String QUERY_DELETE_CONTRACT = "DELETE FROM " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
-
+    private static final String QUERY_UPDATE_BALANCE = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " +
+            PARAMETER_BALANCE + " =? WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
     private static final ConnectionPoolImpl pool;
     private static MessageSender tlsSender;
     private long contractNumber;
@@ -50,6 +55,14 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         }
     }
 
+    /**
+     * Returns the contract corresponding to the contract number and password entered by the user
+     *
+     * @param contractNumber
+     * @param contractPassword
+     * @return Contract corresponding to the param's
+     * @throws DaoException
+     */
     @Override
     public Contract contractAuthentification(long contractNumber, String contractPassword) throws DaoException {
         Connection connection = pool.getConnection();
@@ -74,6 +87,14 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return contract;
     }
 
+    /**
+     * Returns the contract corresponding to the number of the contract entered by the admin.
+     * Only available for users with a role field equal to 'admin'
+     *
+     * @param contractNumber
+     * @return Contract corresponding to the contractNumber or null if the contract is not found
+     * @throws DaoException
+     */
     @Override
     public Contract getContract(long contractNumber) throws DaoException {
         Connection connection = pool.getConnection();
@@ -96,18 +117,28 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         return contract;
     }
 
+    /**
+     * Creates a new contract according to the entered ContractData
+     *
+     * @param data
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean addContract(ContractData data) throws DaoException {
         Connection connection;
         connection = pool.getConnection();
-        String password = data.generatePassword();
-        contractNumber = data.generateContractNumber();
+        RandomGenerator passwordGenerator = passwordGenerator();
+        RandomGenerator contractNumberGenerator = contractNumberGenerator();
+        String password = passwordGenerator.generate(PASSWORD_SIZE);
+        contractNumber = Long.parseLong(contractNumberGenerator.generate(CONTRACT_NUMBER_SIZE));
+
         PreparedStatement prepStatement = null;
         if (!isUniqueDatas(connection, data.getPassportId(), QUERY_CHECK_PASSPORT_ID_USAGE)) {
             return false;
         }
         while (!isUniqueDatas(connection, String.valueOf(contractNumber), QUERY_CHECK_CONTRACT_NUMBER_USAGE)) {
-            contractNumber = data.generateContractNumber();
+            contractNumber = Long.parseLong(contractNumberGenerator.generate(CONTRACT_NUMBER_SIZE));
         }
         int result;
         try {
@@ -174,7 +205,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     private void sendEmail(long contractNumber, String password, String email) {
         tlsSender = new MessageSender();
         String text = MESSAGE_CONTRACT_NUMBER + contractNumber + MESSAGE_PASSWORD + password;
-        tlsSender.send(MESSAGE_SUBJECT, text, email);
+        tlsSender.run(MESSAGE_SUBJECT, text, email);
     }
 
     @Override
@@ -200,4 +231,41 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     public long getContractNumber() {
         return contractNumber;
     }
+
+    @Override
+    public boolean upBalance(BigDecimal newBalance, long contractNumber) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        int result;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_UPDATE_BALANCE);
+            prepStatement.setBigDecimal(1, newBalance);
+            prepStatement.setLong(2, contractNumber);
+            result = prepStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result > 0;
+    }
+
+    public RandomGenerator passwordGenerator() {
+        RandomGenerator randomGenerator = new RandomGenerator.RandomGeneratorBuilder()
+                .useDigits(true)
+                .useLower(true)
+                .useUpper(true)
+                .build();
+        return randomGenerator;
+    }
+
+    public RandomGenerator contractNumberGenerator() {
+        RandomGenerator randomGenerator = new RandomGenerator.RandomGeneratorBuilder()
+                .useDigits(true)
+                .build();
+        return randomGenerator;
+    }
+
 }

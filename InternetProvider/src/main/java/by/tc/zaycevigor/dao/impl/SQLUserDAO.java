@@ -104,34 +104,6 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
     }
 
     @Override
-    public boolean addUser(UserData userData) throws DaoException {
-        Connection connection;
-        connection = pool.getConnection();
-
-        PreparedStatement prepStatement = null;
-        if (!isUniqueDatas(connection, String.valueOf(userData.getContractNumber()), QUERY_CHECK_CONTRACT_NUMBER, userData.getEmail(), QUERY_CHECK_EMAIL_USAGE)) {
-            return false;
-        }
-        int result;
-        try {
-            prepStatement = connection.prepareStatement(QUERY_ADD_USER);
-
-            prepStatement.setLong(1, userData.getContractNumber());
-            prepStatement.setString(2, userData.getEmail());
-            prepStatement.setString(3, userData.getRole());
-            prepStatement.setString(4, userData.getStatus());
-
-            result = prepStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-
-        } finally {
-            close(pool, prepStatement, connection);
-        }
-        return result > 0;
-    }
-
-    @Override
     public List<User> getUserList() throws DaoException {
         Connection connection = pool.getConnection();
         ResultSet resultSet = null;

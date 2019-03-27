@@ -3,6 +3,7 @@ package by.tc.zaycevigor.service.validation;
 import by.tc.zaycevigor.entity.TariffData;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +23,17 @@ public class TariffValidator {
         boolean isCorrect = isCorrect(data.getName(), NAME, TARIFF_NAME_ERROR) &
                 isCorrect(String.valueOf(data.getPrice()), PRICE, TARIFF_PRICE_ERROR) &
                 isCorrect(String.valueOf(data.getSpeed()), SPEED, TARIFF_SPEED_ERROR);
+        String incorrectDataMessage = errorMessage.toString();
+        if (incorrectDataMessage.length() != 0) {
+            request.setAttribute(ERROR, incorrectDataMessage);
+        }
+        return isCorrect;
+    }
+
+    public boolean validate(BigDecimal amount, HttpServletRequest request) {
+        errorMessage = new StringBuilder();
+
+        boolean isCorrect = isCorrect(amount.toString(), PRICE, BALANCE_UP_AMOUNT_ERROR);
         String incorrectDataMessage = errorMessage.toString();
         if (incorrectDataMessage.length() != 0) {
             request.setAttribute(ERROR, incorrectDataMessage);

@@ -2,6 +2,9 @@ package by.tc.zaycevigor.entity;
 
 import java.math.BigDecimal;
 
+/**
+ * Stores the tariff data entered by the administrator for transfer to the DAO add method
+ */
 public class TariffData {
     private String name;
     private BigDecimal price;

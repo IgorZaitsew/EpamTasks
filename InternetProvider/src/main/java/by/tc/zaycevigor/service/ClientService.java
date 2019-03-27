@@ -12,8 +12,6 @@ public interface ClientService {
 
     boolean registration(UserData user, HttpServletRequest request) throws ServiceException;
 
-    boolean addUser(UserData user, HttpServletRequest request) throws ServiceException;
-
     List<User> getUserList() throws ServiceException;
 
     boolean deleteUser(long contractNumber) throws ServiceException;

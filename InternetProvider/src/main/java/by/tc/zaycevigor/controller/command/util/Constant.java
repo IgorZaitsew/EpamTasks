@@ -15,6 +15,7 @@ public class Constant {
     public static final String PARAMETER_TARIFF_MAX_SPEED = "max_speed";
     public static final String PARAMETER_TARIFF_SPEED = "speed";
     public static final String PARAMETER_TARIFF_PRICE = "price";
+    public static final String PARAMETER_AMOUNT = "amount";
 
     public static final String PARAMETER_CITY = "city";
     public static final String PARAMETER_STREET = "street";

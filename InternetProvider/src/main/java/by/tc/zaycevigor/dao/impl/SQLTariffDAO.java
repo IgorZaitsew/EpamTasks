@@ -135,13 +135,12 @@ public class SQLTariffDAO extends SqlDao implements TariffDAO {
         return result > 0;
     }
 
-
     private Tariff createTariff(ResultSet resultSet) throws SQLException {
         Tariff tariff = new Tariff();
-        tariff.setId(resultSet.getInt("id"));
-        tariff.setName(resultSet.getString("name"));
-        tariff.setSpeed(resultSet.getFloat("speed"));
-        tariff.setPrice(resultSet.getBigDecimal("price"));
+        tariff.setId(resultSet.getInt(PARAMETER_ID));
+        tariff.setName(resultSet.getString(PARAMETER_NAME));
+        tariff.setSpeed(resultSet.getFloat(PARAMETER_TARIFF_SPEED));
+        tariff.setPrice(resultSet.getBigDecimal(PARAMETER_TARIFF_PRICE));
         return tariff;
 
     }

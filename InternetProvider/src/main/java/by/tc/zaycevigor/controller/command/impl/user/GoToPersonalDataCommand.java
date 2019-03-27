@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import static by.tc.zaycevigor.controller.command.util.JspPageName.PERSONAL_DATA_PAGE;
 import static by.tc.zaycevigor.controller.command.util.Constant.*;
+import static by.tc.zaycevigor.controller.command.util.JspPageName.SHOW_PERSONAL_DATA_PAGE;
 
 public class GoToPersonalDataCommand implements Command {
     @Override
@@ -18,7 +19,7 @@ public class GoToPersonalDataCommand implements Command {
         String url = CreatorFullURL.create(request);
         request.getSession(false).setAttribute(PREV_REQUEST, url);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(PERSONAL_DATA_PAGE);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(SHOW_PERSONAL_DATA_PAGE);
         dispatcher.forward(request, response);
     }
 }

@@ -25,6 +25,8 @@ public final class JspPageName {
     public static final String GO_TO_AUTHORISATION_PAGE = "/controller?command=goToAuthorizationPage&";
 
     public static final String PERSONAL_DATA_PAGE = "WEB-INF/pages/secure/personalData.jsp";
+    public static final String SHOW_PERSONAL_DATA_PAGE = "/secure?command=personalData&";
+    public static final String GO_TO_PERSONAL_DATA_PAGE = "/secure?command=goToPersonalDataCommand&";
 
     public static final String TARIFF_PAGE = "WEB-INF/pages/secure/tariffList.jsp";
     public static final String GO_TO_TARIFF_LIST_PAGE = "/secure?command=goToTariffList&";

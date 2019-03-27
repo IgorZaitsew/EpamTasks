@@ -12,10 +12,6 @@ public class RandomGenerator {
     private boolean useUpper;
     private boolean useDigits;
 
-    private RandomGenerator() {
-        throw new UnsupportedOperationException("Empty constructor is not supported.");
-    }
-
     private RandomGenerator(RandomGeneratorBuilder builder) {
         this.useLower = builder.useLower;
         this.useUpper = builder.useUpper;

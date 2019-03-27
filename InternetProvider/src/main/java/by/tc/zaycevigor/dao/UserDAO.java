@@ -12,8 +12,6 @@ public interface UserDAO {
 
     boolean registration(UserData userData) throws DaoException;
 
-    boolean addUser(UserData userData) throws DaoException;
-
     List<User> getUserList() throws DaoException;
 
     boolean deleteUser(long contractNumber) throws DaoException;

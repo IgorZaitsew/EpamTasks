@@ -65,29 +65,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean addUser(UserData user, HttpServletRequest request) throws ServiceException {
-        UserValidator validator = new UserValidator();
-        if (!validator.validate(request, user.getContractNumber(),user.getEmail(),user.getRole(),user.getStatus())) {
-            errorMessage = new StringBuilder();
-            errorMessage.append(validator.getErrorMessage());
-            return false;
-        }
-        DAOProvider daoProvider = DAOProvider.getInstance();
-        UserDAO userDAO = daoProvider.getUserDAO();
-        boolean result;
-        try {
-            result=userDAO.addUser(user);
-            if (!result) {
-                errorMessage = new StringBuilder();
-                errorMessage.append(USER_EXIST);
-            }
-        } catch (DaoException e) {
-            throw new ServiceException();
-        }
-        return result;
-    }
-
-    @Override
     public List<User> getUserList() throws ServiceException {
         DAOProvider daoProvider = DAOProvider.getInstance();
         UserDAO userDAO = daoProvider.getUserDAO();

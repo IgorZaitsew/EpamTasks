@@ -1,7 +1,9 @@
 package by.tc.zaycevigor.entity;
 
 import by.tc.zaycevigor.dao.util.RandomGenerator;
-
+/**
+ * Stores the contract data entered by the user for transfer to the DAO add method
+ */
 public class ContractData {
     public static final int PASSWORD_SIZE = 10;
     public static final int CONTRACT_NUMBER_SIZE = 12;
@@ -14,7 +16,6 @@ public class ContractData {
     private String street;
     private String houseNumber;
     private String email;
-    private String password;
 
     public String getEmail() {
         return email;
@@ -40,15 +41,6 @@ public class ContractData {
         this.tariffId = tariffId;
     }
 
-    public String generatePassword() {
-        RandomGenerator randomGenerator = new RandomGenerator.RandomGeneratorBuilder()
-                .useDigits(true)
-                .useLower(true)
-                .useUpper(true)
-                .build();
-        return randomGenerator.generate(PASSWORD_SIZE);
-    }
-
     public String getName() {
         return name;
     }
@@ -66,14 +58,6 @@ public class ContractData {
     }
 
     public long getContractNumber() {
-        return contractNumber;
-    }
-
-    public long generateContractNumber() {
-        RandomGenerator randomGenerator = new RandomGenerator.RandomGeneratorBuilder()
-                .useDigits(true)
-                .build();
-        contractNumber = Long.parseLong(randomGenerator.generate(CONTRACT_NUMBER_SIZE));
         return contractNumber;
     }
 

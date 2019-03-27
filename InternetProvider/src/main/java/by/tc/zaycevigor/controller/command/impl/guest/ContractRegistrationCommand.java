@@ -42,7 +42,8 @@ public class ContractRegistrationCommand implements Command {
         contractData.setEmail(email);
         try {
             if (service.addContract(contractData, request)) {
-                if (!((User) session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
+                User user = ((User) session.getAttribute(PARAMETER_USER));
+                if (user == null || !user.getRole().equals(ADMIN_ROLE)) {
                     session.setAttribute(PARAMETER_CONTRACT, new Contract(contractData));
                 }
                 session.setAttribute(PARAMETER_EMAIL, email);
