@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="InternetProvider:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="65ac5248-2269-4046-9ad6-6e9150a2fc6e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/InternetProvider.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/InternetProvider.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/ControllerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/ControllerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/CommandProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/CommandProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToTariffAddPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToTariffAddPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToTariffAddSuccessPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToTariffAddSuccessPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserAddSuccessCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserAddSuccessCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserDeletePageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserDeletePageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserDeleteSuccessCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserDeleteSuccessCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserInfoPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserInfoPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/GoToUserListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/ShowUserInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/ShowUserInfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/ShowUserListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/ShowUserListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/TariffAddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/TariffAddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/UserDeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/admin/UserDeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/constant/ChangeLocale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/constant/ChangeLocale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/constant/GoToErrorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/constant/GoToErrorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/AuthorizationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/AuthorizationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/ContractRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/ContractRegistrationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToAuthorizationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToAuthorizationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToContractRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToContractRegistrationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToIndexPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/GoToIndexPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/UserRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/guest/UserRegistrationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ChangeTariffCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ChangeTariffCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ExitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToChangingResultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToChangingResultCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToChangingTariffPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToChangingTariffPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToMainPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToMainPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToPersonalDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToPersonalDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToTariffListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/GoToTariffListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowPersonalDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowPersonalDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowSingleTariffCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowSingleTariffCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowTariffListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/ShowTariffListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/UpBalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/impl/user/UpBalanceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/CreatorFullURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/CreatorFullURL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/JspPageName.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/command/util/JspPageName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/AdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/AdminFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/EncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/EncodingFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/GuestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/GuestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/UserFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/controller/filter/UserFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/ContractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/ContractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/DAOProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/DAOProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/TariffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/TariffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/ConnectionPoolException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/ConnectionPoolException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/DaoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/DaoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/NotDBDriverException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/exception/NotDBDriverException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/ConnectionPoolImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/ConnectionPoolImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLContractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLContractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLTariffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLTariffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SQLUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SqlDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/impl/SqlDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/Closer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/Closer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/IsUniqueCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/IsUniqueCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/MessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/dao/util/RandomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/ContractData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/ContractData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/Tariff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/Tariff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/TariffData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/TariffData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/UserData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/criteria/SearchCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/entity/criteria/SearchCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ContractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ServiceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/TariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/TariffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/ClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/ContractServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/ContractServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/TariffServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/impl/TariffServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/util/ErrorMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/util/ErrorMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/ContractValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/ContractValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/TariffValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/TariffValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/java/by/tc/zaycevigor/service/validation/UserValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/database.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/locale_ru.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/main/resources/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/test/java/by/tc/zaycevigor/dao/impl/SQLTariffDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/test/java/by/tc/zaycevigor/dao/impl/SQLTariffDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/src/test/java/by/tc/zaycevigor/dao/util/MessageSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/src/test/java/by/tc/zaycevigor/dao/util/MessageSenderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/after_contract_reg.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/after_contract_reg.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/authorization.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/authorization.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/contractRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/contractRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/default.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/default.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/error/errorPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/error/errorPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/addressEnter.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/addressEnter.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/addTariffPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/addTariffPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/addUserSuccessPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/addUserSuccessPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/tariffAddSuccess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/tariffAddSuccess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userDelete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userDelete.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userDeleteSuccess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userDeleteSuccess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/admin/userList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/changeResult.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/changeResult.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/changeTariff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/changeTariff.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/personalData.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/personalData.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/singleTariffInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/singleTariffInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/tariffList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/secure/tariffList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/static/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/static/navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/static/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/WEB-INF/pages/static/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/js/jquery.messageWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/js/jquery.messageWindow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InternetProvider/web/js/jquery.validationEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../InternetProvider/web/js/jquery.validationEngine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RestarauntMenu/src/java/resources/menu.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RestarauntMenu/src/java/resources/menu_db.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/out/artifacts/web_war_exploded/WEB-INF/classes/by/tc/zaycevigor/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/out/artifacts/web_war_exploded/WEB-INF/classes/by/tc/zaycevigor/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/out/artifacts/web_war_exploded/WEB-INF/classes/resources/menu_db.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/out/artifacts/web_war_exploded/WEB-INF/classes/resources/menu_db.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/out/production/ThirdTask/by/tc/zaycevigor/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/out/production/ThirdTask/by/tc/zaycevigor/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/out/production/ThirdTask/resources/menu_db.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/out/production/ThirdTask/resources/menu_db.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ThirdTask/src/resources/menu_db.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThirdTask/src/resources/menu_db.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/WebController-servlet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="79" selection-start-line="8" selection-start-column="79" selection-end-line="8" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/final.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/WebController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#735#736#0" expanded="true" />
+                <element signature="e#765#766#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-170">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="spring-beans.schema" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Servlet-servlet.xml</find>
+      <find>ClassMetadataReadingVisitor</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/TestBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/Music.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/musicPlayer.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/ClassicalMusic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/Computer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/TestSpring.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/RockMusic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/MUSIC_ENUM.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/MusicEnum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/MusicPlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages.hello.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/hello.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/InternetProvider-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/controller/SpringController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/controller/HelloController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/hello/secondpage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/hello/hello.jsp" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hello.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/final.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/final.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/final.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/HelloWeb-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/HelloController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/WebController-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/by/zaycev/WebController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="InternetProvider Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="InternetProvider Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="zaycev" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="InternetProvider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InternetProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569567978300" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="by.zaycev" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\GitFolder\Spring\InternetProvider\src\main\webapp" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.37">
+    <configuration name="TestSpring" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="by.zaycev.TestSpring" />
+      <module name="InternetProvider" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.zaycev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InternetProvider" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="InternetProvider:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_InternetProvider_2" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51352" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="InternetProvider:war" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InternetProvider_war/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="InternetProvider:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/InternetProvider_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="_InternetProvider_2" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51352" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="InternetProvider:war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.TestSpring" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.37" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestSpring" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.54285717" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65ac5248-2269-4046-9ad6-6e9150a2fc6e" name="Default Changelist" comment="" />
+      <created>1568445667429</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568445667429</updated>
+      <workItem from="1568445670163" duration="10899000" />
+      <workItem from="1568957464328" duration="4659000" />
+      <workItem from="1569422123117" duration="3808000" />
+      <workItem from="1569481230062" duration="3275000" />
+      <workItem from="1569516951104" duration="9399000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="32040000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73641306" visible="true" weight="0.21028744" />
+      <window_info id="Structure" order="1" sideWeight="0.26358697" side_tool="true" visible="true" weight="0.21028744" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.39770868" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289689" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.39770868" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Application Servers" order="15" weight="0.3289689" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32980332" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/TestBean.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/Music.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/MUSIC_ENUM.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/TestSpring.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/musicPlayer.properties" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/ClassicalMusic.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/RockMusic.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/MusicEnum.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/MusicPlayer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages.hello.jsp" />
+    <entry file="file://$PROJECT_DIR$/InternetProvider.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/Computer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/controller/ContextLoaderListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/secondpage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hello.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/final.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/final.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/WebController-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="79" selection-start-line="8" selection-start-column="79" selection-end-line="8" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/zaycev/WebController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#765#766#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>InternetProvider:war exploded</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>JSTL</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring|InternetProvider</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: commons-logging:commons-logging:1.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
