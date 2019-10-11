@@ -34,12 +34,14 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <c:if test="${sessionScope.user!=null}">
+                <c:if test="${sessionScope.user.role!='admin'}">
+                    <li class="nav-item" style="margin: 5px">
+                        <a href="${pageContext.request.contextPath}/secure?command=personalData"
+                           class="btn btn-outline-success">${personal_data}</a>
+                    </li>
+                </c:if>
                 <li class="nav-item" style="margin: 5px">
-                    <a href="${pageContext.request.contextPath}/secure?command=personalData"
-                       class="btn btn-outline-success">${personal_data}</a>
-                </li>
-                <li class="nav-item" style="margin: 5px">
-                    <a href="${pageContext.request.contextPath}/secure?command=tariffList&id=0&name=%&min_price=0&max_price=0&min_speed=0&max_speed=0"
+                    <a href="${pageContext.request.contextPath}/secure?command=tariffList&id=2"
                        class="btn btn-outline-success">${tariff_list}</a>
 
                 </li>

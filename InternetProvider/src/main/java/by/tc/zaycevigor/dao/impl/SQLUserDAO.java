@@ -3,11 +3,14 @@ package by.tc.zaycevigor.dao.impl;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 
 import by.tc.zaycevigor.dao.exception.ConnectionPoolException;
 import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.UserDAO;
+import by.tc.zaycevigor.dao.util.MessageSender;
+import by.tc.zaycevigor.dao.util.MessageService;
 import by.tc.zaycevigor.entity.User;
 import by.tc.zaycevigor.entity.UserData;
 
@@ -30,7 +33,12 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
             PARAMETER_USER_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
     private static final String QUERY_GET_USER_LIST = "SELECT * FROM " + PARAMETER_USER_TABLE_NAME;
     private static final String QUERY_DELETE_USER = "DELETE FROM " + PARAMETER_USER_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
-
+    private static final String QUERY_GET_MAIL = "SELECT " + PARAMETER_EMAIL + " FROM " +
+            PARAMETER_USER_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
+    private static final String QUERY_READJUST_USER = "UPDATE " + PARAMETER_USER_TABLE_NAME + " SET " + PARAMETER_STATUS +
+            " =?, " + PARAMETER_ROLE + " =?, " + PARAMETER_EMAIL + " =?, " + PARAMETER_CONTRACT_NUMBER + " =? " + " WHERE " + PARAMETER_ID + " =?";
+    private static final String QUERY_UPDATE_STATUS_USER = "UPDATE " + PARAMETER_USER_TABLE_NAME + " SET " + PARAMETER_STATUS +
+            " =? "  + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
     private static final ConnectionPoolImpl pool;
 
     static {
@@ -43,6 +51,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     /**
      * return user with contract number specified in params
+     *
      * @param contractNumber
      * @return
      * @throws DaoException
@@ -73,6 +82,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     /**
      * creates the instance of user by result set
+     *
      * @param resultSet
      * @return
      * @throws SQLException
@@ -90,6 +100,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     /**
      * add user with userData to DB
+     *
      * @param userData
      * @return
      * @throws DaoException
@@ -122,6 +133,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     /**
      * return all users,contains at DB
+     *
      * @return
      * @throws DaoException
      */
@@ -148,6 +160,7 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
 
     /**
      * removes user with contract number specified at params from DB
+     *
      * @param contractNumber
      * @return
      * @throws DaoException
@@ -170,5 +183,77 @@ public class SQLUserDAO extends SqlDao implements UserDAO {
         }
         return result > 0;
     }
+
+    @Override
+    public boolean sendWarnings(Queue<Long> contractNumbers) throws DaoException {
+        Connection connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+
+        ResultSet resultSet;
+        int result = 0;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_GET_MAIL);
+            for (Long number : contractNumbers) {
+                prepStatement.setLong(1, number);
+                resultSet = prepStatement.executeQuery();
+                if (resultSet.next()) {
+                    result++;
+                    sendEmail(resultSet.getString(PARAMETER_EMAIL));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result > 0;
+    }
+
+    @Override
+    public boolean readjustUser(int userId, UserData userData) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        int result;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_READJUST_USER);
+
+            prepStatement.setString(1, userData.getStatus());
+            prepStatement.setString(2, userData.getRole());
+            prepStatement.setString(3, userData.getEmail());
+            prepStatement.setLong(4, userData.getContractNumber());
+            prepStatement.setInt(5, userId);
+            result = prepStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result > 0;
+    }
+
+    @Override
+    public void setStatus(long contractNumber,String status)throws DaoException{
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_UPDATE_STATUS_USER);
+            prepStatement.setString(1, status);
+            prepStatement.setLong(2, contractNumber);
+            prepStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+    }
+
+    private void sendEmail(String email) {
+        MessageService service = MessageService.MESSAGE_SERVICE;
+        service.sendMail(MESSAGE_SUBJECT_TARIFF_REMOVE, MESSAGE_TEXT, email);
+    }
+
 
 }

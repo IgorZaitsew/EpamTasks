@@ -2,7 +2,7 @@
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../pages/static/navbar.jsp" %>
+<%@ include file="../jsp/static/navbar.jsp" %>
 
 <!DOCTYPE html>
 <html>

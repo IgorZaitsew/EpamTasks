@@ -27,6 +27,7 @@
     <fmt:message bundle="${loc}" key="locale.user_info.tariff_name" var="tariff_name"/>
     <fmt:message bundle="${loc}" key="locale.user_info.tariff_price" var="tariff_price"/>
     <fmt:message bundle="${loc}" key="locale.user_info.tariff_speed" var="tariff_speed"/>
+    <fmt:message bundle="${loc}" key="locale.user_readjust.readjust" var="readjust"/>
 </head>
 <body>
 
@@ -44,6 +45,10 @@
                 <hr>
                 <p class="mb-3">${user_status}${user.status}</p>
             </div>
+            <btn>
+                <a href="${pageContext.request.contextPath}/admin?command=go_to_user_readjust&id=${user.id}&status=${user.status}&email=${user.email}&contract_number=${user.contractNumber}&role=${user.role}"
+                   class="btn btn-primary btn-lg">${readjust}</a>
+            </btn>
         </div>
         <div class="col-xs-1" itemref="${requestScope.contract}" var="contract">
             <div class="alert alert-primary" role="alert">
@@ -80,6 +85,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </div>
 </body>

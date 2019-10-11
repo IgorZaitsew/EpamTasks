@@ -43,7 +43,7 @@
             <span class="badge badge-primary badge-pill">${ban_status}${users.status}</span>
             <span class="badge badge-primary badge-pill">${users.role}</span>
             <span class="badge badge-primary badge-pill">${users.email}</span>
-            <a href="${pageContext.request.contextPath}/admin?command=user_delete&contract_number=${users.contractNumber}"
+            <a href="${pageContext.request.contextPath}/admin?command=go_to_user_delete&contract_number=${users.contractNumber}"
                class="btn btn-danger btn-lg">${delete}</a>
         </li>
     </c:forEach>

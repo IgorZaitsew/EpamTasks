@@ -9,6 +9,7 @@ public class Constant {
     public static final String PARAMETER_EMAIL = "email";
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_TARIFF_NAME = "name";
+    public static final String PARAMETER_TARIFF_ID = "tariff_id";
     public static final String PARAMETER_TARIFF_MIN_PRICE = "min_price";
     public static final String PARAMETER_TARIFF_MAX_PRICE = "max_price";
     public static final String PARAMETER_TARIFF_MIN_SPEED = "min_speed";
@@ -38,6 +39,14 @@ public class Constant {
     public static final String TARIFF_ID = "tariff_id";
     public static final String CONTRACT_NOT_FOUND = "contractExist=false&";
 
-    public static final String ADMIN_ROLE="admin";
+    public static final String ADMIN_ROLE = "admin";
     public static final String PREV_REQUEST = "prev_request";
+
+    public static final String CHANGED_TARIFF_COUNT = "changed_tariff_count";
+
+    public static final int TARIFFS_COUNT_FOR_PAGINATION = 6;
+    public static final int FIRST_TARIFF_ID = 2;
+    public static final double BALANCE_COEF = -0.01;
+    public static final String PARAMETER_FIRST_TARIFF_ID = "first_id";
 }
+

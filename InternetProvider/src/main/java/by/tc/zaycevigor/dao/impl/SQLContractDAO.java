@@ -4,6 +4,7 @@ import by.tc.zaycevigor.dao.ContractDAO;
 import by.tc.zaycevigor.dao.exception.ConnectionPoolException;
 import by.tc.zaycevigor.dao.exception.DaoException;
 import by.tc.zaycevigor.dao.util.MessageSender;
+import by.tc.zaycevigor.dao.util.MessageService;
 import by.tc.zaycevigor.dao.util.RandomGenerator;
 import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.entity.ContractData;
@@ -13,6 +14,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayDeque;
+import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -30,7 +36,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     private static final String PREP_STAT_CLOSE_EXC = "Cannot close prepared statement";
 
 
-    private static final String QUERY_CHECK_CREDENTIONALS = "SELECT * FROM " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " +
+    private static final String QUERY_GET_CONTRACT_DATA = "SELECT * FROM " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " +
             PARAMETER_CONTRACT_NUMBER + "=?";
     private static final String QUERY_CHECK_CONTRACT_NUMBER_USAGE = "SELECT COUNT(" + PARAMETER_CONTRACT_NUMBER + ") FROM personal_data WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
     private static final String QUERY_CHECK_PASSPORT_ID_USAGE = "SELECT COUNT(" + PARAMETER_PASSPORT_ID + ") FROM personal_data WHERE " + PARAMETER_PASSPORT_ID + "=?";
@@ -41,8 +47,17 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
     public static final String QUERY_UPDATE_TARIFF_ID = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " + PARAMETER_TARIFF_ID +
             "=? WHERE " + PARAMETER_CONTRACT_NUMBER + "=?";
     private static final String QUERY_DELETE_CONTRACT = "DELETE FROM " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
-    private static final String QUERY_UPDATE_BALANCE = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " +
+    private static final String QUERY_SET_BALANCE = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " +
             PARAMETER_BALANCE + " =? WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
+    private static final String QUERY_UPDATE_BALANCE = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " +
+            PARAMETER_BALANCE + " = " + PARAMETER_BALANCE + " + ? WHERE " + PARAMETER_TARIFF_ID + " =? ";
+    private static final String QUERY_RESET_TARIFF = "UPDATE " + PARAMETER_PERSONAL_DATA_TABLE_NAME + " SET " + PARAMETER_TARIFF_ID +
+            " =1 WHERE " + PARAMETER_TARIFF_ID + " =?";
+    private static final String QUERY_GET_NUMBER = "SELECT " + PARAMETER_CONTRACT_NUMBER + " FROM " +
+            PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " + PARAMETER_TARIFF_ID + " =?";
+    private static final String QUERY_GET_BALANCE_BY_ID = "SELECT " + PARAMETER_BALANCE + " FROM " +
+            PARAMETER_PERSONAL_DATA_TABLE_NAME + " WHERE " + PARAMETER_CONTRACT_NUMBER + " =?";
+
     private static final ConnectionPoolImpl pool;
     private long contractNumber;
 
@@ -70,7 +85,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         ResultSet resultSet = null;
         Contract contract = null;
         try {
-            prepStatement = connection.prepareStatement(QUERY_CHECK_CREDENTIONALS);
+            prepStatement = connection.prepareStatement(QUERY_GET_CONTRACT_DATA);
             prepStatement.setLong(1, contractNumber);
             resultSet = prepStatement.executeQuery();
             if (resultSet.next()) {
@@ -102,7 +117,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         ResultSet resultSet = null;
         Contract contract = null;
         try {
-            prepStatement = connection.prepareStatement(QUERY_CHECK_CREDENTIONALS);
+            prepStatement = connection.prepareStatement(QUERY_GET_CONTRACT_DATA);
             prepStatement.setLong(1, contractNumber);
             resultSet = prepStatement.executeQuery();
             if (resultSet.next()) {
@@ -164,11 +179,13 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
             close(pool, prepStatement, connection);
         }
         sendEmail(contractNumber, password, data.getEmail());
+
         return result > 0;
     }
 
     /**
      * changes the id in the contract determined by the contract number
+     *
      * @param contractNumber
      * @param tariffId
      * @return
@@ -196,6 +213,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
 
     /**
      * create instance of Contract by result set data
+     *
      * @param resultSet
      * @return
      * @throws SQLException
@@ -216,17 +234,20 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
 
     /**
      * send email with contract number and password to registrated user
+     *
      * @param contractNumber
      * @param password
      * @param email
      */
     private void sendEmail(long contractNumber, String password, String email) {
         String text = MESSAGE_CONTRACT_NUMBER + contractNumber + MESSAGE_PASSWORD + password;
-        new MessageSender().run(MESSAGE_SUBJECT, text, email);
+        MessageService service = MessageService.MESSAGE_SERVICE;
+        service.sendMail(MESSAGE_SUBJECT, text, email);
     }
 
     /**
      * removes contract from DB
+     *
      * @param contractNumber
      * @return
      * @throws DaoException
@@ -257,6 +278,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
 
     /**
      * increases the balance in the account with the specified contract number
+     *
      * @param newBalance
      * @param contractNumber
      * @return
@@ -269,7 +291,7 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
         PreparedStatement prepStatement = null;
         int result;
         try {
-            prepStatement = connection.prepareStatement(QUERY_UPDATE_BALANCE);
+            prepStatement = connection.prepareStatement(QUERY_SET_BALANCE);
             prepStatement.setBigDecimal(1, newBalance);
             prepStatement.setLong(2, contractNumber);
             result = prepStatement.executeUpdate();
@@ -280,6 +302,94 @@ public class SQLContractDAO extends SqlDao implements ContractDAO {
             close(pool, prepStatement, connection);
         }
         return result > 0;
+    }
+
+    @Override
+    public void updateAllBalances(BigDecimal delta, Map<Integer, BigDecimal> priceList) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        try {
+            for (int tariffId : priceList.keySet()) {
+                prepStatement = connection.prepareStatement(QUERY_UPDATE_BALANCE);
+                prepStatement.setBigDecimal(1, delta.multiply(priceList.get(tariffId)));
+                prepStatement.setInt(2, tariffId);
+                prepStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+    }
+
+
+    @Override
+    public Queue<Long> findTariffUsers(int tariffId) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        ResultSet resultSet;
+        ArrayDeque<Long> contractNumbers = null;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_GET_NUMBER);
+            prepStatement.setLong(1, tariffId);
+            resultSet = prepStatement.executeQuery();
+
+            if (resultSet.last()) {
+                contractNumbers = new ArrayDeque<>(resultSet.getRow());
+                resultSet.beforeFirst();
+            }
+            while (resultSet.next()) {
+                contractNumbers.add(resultSet.getLong(PARAMETER_CONTRACT_NUMBER));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return contractNumbers;
+    }
+
+    @Override
+    public boolean resetTariffUsers(int tariffId) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        int result;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_RESET_TARIFF);
+            prepStatement.setInt(1, tariffId);
+            result = prepStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result > 0;
+    }
+
+    @Override
+    public BigDecimal getBalance(long contractNumber) throws DaoException {
+        Connection connection;
+        connection = pool.getConnection();
+        PreparedStatement prepStatement = null;
+        BigDecimal result = null;
+        try {
+            prepStatement = connection.prepareStatement(QUERY_GET_BALANCE_BY_ID);
+            prepStatement.setLong(1, contractNumber);
+            ResultSet resultSet;
+            resultSet = prepStatement.executeQuery();
+            if (resultSet.next()) {
+                result = resultSet.getBigDecimal(PARAMETER_BALANCE);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            close(pool, prepStatement, connection);
+        }
+        return result;
     }
 
     public RandomGenerator passwordGenerator() {

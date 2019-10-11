@@ -31,5 +31,10 @@ public class Constant {
     public static final String MESSAGE_CONTRACT_NUMBER = "Ваш номер договора: ";
     public static final String MESSAGE_PASSWORD = "\nВаш пароль: ";
     public static final String MESSAGE_SUBJECT = "Заключение договора";
+    public static final String USER_STATUS_CLEAR = "clear";
+    public static final String USER_STATUS_BANNED = "banned";
+
+    public static final String MESSAGE_TEXT = "Ваш тариф был удалён, поэтому вам необходимо выбрать новый тарифный план.";
+    public static final String MESSAGE_SUBJECT_TARIFF_REMOVE = "Удаление тарифного плана";
     public static final int BASIC_TARIFF_ID = 1;
 }

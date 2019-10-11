@@ -70,6 +70,15 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>BalanceFilter</filter-name>
+        <filter-class>by.tc.zaycevigor.controller.filter.BalanceFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BalanceFilter</filter-name>
+        <url-pattern>/secure/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>UserFilter</filter-name>
         <filter-class>by.tc.zaycevigor.controller.filter.UserFilter</filter-class>
         <init-param>

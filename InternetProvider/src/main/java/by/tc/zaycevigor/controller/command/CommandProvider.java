@@ -41,8 +41,18 @@ public class CommandProvider {
         commands.put("user_list", new ShowUserListCommand());
 
         commands.put("user_delete", new UserDeleteCommand());
-        commands.put("goToUserDeleteConfirm", new GoToUserDeletePageCommand());
+        commands.put("go_to_user_delete", new GoToUserDeletePageCommand());
         commands.put("goToUserDeleteSuccess", new GoToUserDeleteSuccessCommand());
+
+        commands.put("tariff_delete", new TariffDeleteCommand());
+        commands.put("go_to_tariff_delete", new GoToTariffDeletePageCommand());
+        commands.put("go_to_tariff_delete_success", new GoToTariffDeleteSuccessCommand());
+
+        commands.put("tariff_readjust", new TariffReadjustCommand());
+        commands.put("go_to_tariff_readjust", new GoToTariffReadjustCommand());
+
+        commands.put("user_readjust", new UserReadjustCommand());
+        commands.put("go_to_user_readjust", new GoToUserReadjustCommand());
 
         commands.put("goToUserAddSuccess", new GoToUserAddSuccessCommand());
 

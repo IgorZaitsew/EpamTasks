@@ -3,10 +3,10 @@ package by.tc.zaycevigor.controller.filter;
 import by.tc.zaycevigor.entity.User;
 
 import javax.servlet.*;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import javax.servlet.http.HttpSession;
-        import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 import static by.tc.zaycevigor.controller.command.util.Constant.ADMIN_ROLE;
 import static by.tc.zaycevigor.controller.command.util.Constant.PARAMETER_USER;
@@ -22,7 +22,7 @@ public class UserFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
-        if (session.getAttribute(PARAMETER_USER) != null && !((User) session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
+        if (session.getAttribute(PARAMETER_USER) != null) {
             request.getRequestDispatcher(MAIN_PAGE).forward(request, response);
         } else {
             filterChain.doFilter(request, response);

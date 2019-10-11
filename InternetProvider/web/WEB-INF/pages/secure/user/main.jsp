@@ -1,6 +1,6 @@
 <%@ page language="java" import="by.tc.zaycevigor.entity.*" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%@ include file="../../pages/static/navbar.jsp" %>
+<%@ include file="../../static/navbar.jsp" %>
 
 <!DOCTYPE html>
 <html>

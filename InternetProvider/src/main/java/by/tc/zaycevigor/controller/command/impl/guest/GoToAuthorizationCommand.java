@@ -2,6 +2,10 @@ package by.tc.zaycevigor.controller.command.impl.guest;
 
 import by.tc.zaycevigor.controller.command.Command;
 import by.tc.zaycevigor.controller.command.util.CreatorFullURL;
+import by.tc.zaycevigor.service.ClientService;
+import by.tc.zaycevigor.service.ContractService;
+import by.tc.zaycevigor.service.ServiceException;
+import by.tc.zaycevigor.service.ServiceProvider;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import static by.tc.zaycevigor.controller.command.util.JspPageName.AUTHORIZATION_PAGE;
 import static by.tc.zaycevigor.controller.command.util.Constant.*;

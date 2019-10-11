@@ -81,7 +81,6 @@ public class ContractValidator {
         }
     }
 
-
     public StringBuilder getErrorMessage() {
         return errorMessage;
     }

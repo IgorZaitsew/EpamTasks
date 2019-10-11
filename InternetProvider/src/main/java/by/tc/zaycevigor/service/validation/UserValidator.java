@@ -1,5 +1,7 @@
 package by.tc.zaycevigor.service.validation;
 
+import by.tc.zaycevigor.entity.UserData;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +16,7 @@ public class UserValidator {
     public static final Pattern PASSWORD = Pattern.compile("^[A-я0-9_.]{" + PASSWORD_SIZE + "}$", Pattern.CASE_INSENSITIVE);
     public static final Pattern CONTRACT_NUMBER = Pattern.compile("^[0-9]{" + CONTRACT_NUMBER_SIZE + "}$", Pattern.CASE_INSENSITIVE);
     public static final Pattern ROLE = Pattern.compile("^[admin]|[user]$", Pattern.CASE_INSENSITIVE);
-    public static final Pattern STATUS = Pattern.compile("^[banned]|[free]$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern STATUS = Pattern.compile("^[banned]|[clear]$", Pattern.CASE_INSENSITIVE);
     public static final String ERROR_NAME = "error";
     private StringBuilder errorMessage;
 
@@ -30,6 +32,10 @@ public class UserValidator {
         return isCorrect;
     }
 
+    public boolean validate(String status) {
+        return isStatusCorrect(status);
+    }
+
     public boolean validate(HttpServletRequest request, long contractNumber, String email) {
 
         errorMessage = new StringBuilder();
@@ -42,12 +48,12 @@ public class UserValidator {
         return isCorrect;
     }
 
-    public boolean validate(HttpServletRequest request, long contractNumber, String email,String role,String status) {
+    public boolean validate(HttpServletRequest request, UserData userData) {
 
         errorMessage = new StringBuilder();
 
-        boolean isCorrect = isContractNumberCorrect(contractNumber) & isEmailCorrect(email) & isRoleCorrect(role) &
-                isStatusCorrect(status);
+        boolean isCorrect = isContractNumberCorrect(userData.getContractNumber()) & isEmailCorrect(userData.getEmail()) &
+                isRoleCorrect(userData.getRole()) & isStatusCorrect(userData.getStatus());
         String incorrectDataMessage = errorMessage.toString();
         if (incorrectDataMessage.length() != 0) {
             request.setAttribute(ERROR_NAME, incorrectDataMessage);
@@ -64,7 +70,6 @@ public class UserValidator {
             return false;
         }
     }
-
     private boolean isPasswordCorrect(String password) {
         Matcher m = PASSWORD.matcher(password);
         if (m.find()) {

@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%@ include file="../../pages/static/navbar.jsp" %>
+<%@ include file="../../static/navbar.jsp" %>
 
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Authorization page</title>
+    <title>User delete</title>
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:setBundle basename="locale" var="loc"/>
-    <fmt:message bundle="${loc}" key="locale.change_tariff.confirm" var="confirm_text"/>
-    <fmt:message bundle="${loc}" key="locale.change_tariff.confirm_button" var="change_button"/>
+    <fmt:message bundle="${loc}" key="locale.tariff_delete.confirm_text" var="confirm_text"/>
+    <fmt:message bundle="${loc}" key="locale.tariff_delete.delete_btn" var="delete_button"/>
 
 </head>
 <body>
-<form class="form-horizontal" action="${pageContext.request.contextPath}/secure?command=changeTariff&tariff_id=${requestScope.tariff_id}" method="post">
+<form class="form-horizontal"
+      action="${pageContext.request.contextPath}/admin?command=tariff_delete&tariff_id=${requestScope.tariff_id}"
+      method="post">
     <fieldset>
         <div class="alert alert-success" role="alert">
             ${confirm_text}${requestScope.name}?
@@ -21,7 +23,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <button  type="submit" class="btn btn-success">${change_button}</button>
+                <button type="submit" class="btn btn-success">${delete_button}</button>
             </div>
         </div>
     </fieldset>

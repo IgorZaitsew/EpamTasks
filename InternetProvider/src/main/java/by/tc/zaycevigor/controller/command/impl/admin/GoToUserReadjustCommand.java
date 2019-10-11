@@ -7,20 +7,22 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static by.tc.zaycevigor.controller.command.util.Constant.*;
-import static by.tc.zaycevigor.controller.command.util.JspPageName.USER_DELETE_PAGE;
+import static by.tc.zaycevigor.controller.command.util.JspPageName.USER_READJUST_PAGE;
 
-public class GoToUserDeletePageCommand implements Command {
+public class GoToUserReadjustCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = CreatorFullURL.create(request);
         request.getSession(true).setAttribute(PREV_REQUEST, url);
-
-        request.setAttribute(PARAMETER_CONTRACT_NUMBER,request.getParameter(PARAMETER_CONTRACT_NUMBER));
-        RequestDispatcher dispatcher = request.getRequestDispatcher(USER_DELETE_PAGE);
+        request.setAttribute(PARAMETER_ID, request.getParameter(PARAMETER_ID));
+        request.setAttribute(PARAMETER_STATUS, request.getParameter(PARAMETER_STATUS));
+        request.setAttribute(PARAMETER_ROLE, request.getParameter(PARAMETER_ROLE));
+        request.setAttribute(PARAMETER_EMAIL, request.getParameter(PARAMETER_EMAIL));
+        request.setAttribute(PARAMETER_CONTRACT_NUMBER, request.getParameter(PARAMETER_CONTRACT_NUMBER));
+        RequestDispatcher dispatcher = request.getRequestDispatcher(USER_READJUST_PAGE);
         dispatcher.forward(request, response);
     }
 }

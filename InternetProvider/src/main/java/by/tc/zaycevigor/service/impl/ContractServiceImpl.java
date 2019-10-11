@@ -14,9 +14,9 @@ import by.tc.zaycevigor.service.validation.ContractValidator;
 import javax.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Queue;
 
-import static by.tc.zaycevigor.dao.util.Constant.ADMIN_ROLE;
-import static by.tc.zaycevigor.dao.util.Constant.PARAMETER_USER;
 import static by.tc.zaycevigor.service.util.ErrorMessages.*;
 
 public class ContractServiceImpl implements ContractService {
@@ -46,7 +46,8 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract getContract(long contractNumber, HttpServletRequest request) throws ServiceException {
-        if (!((User)request.getSession(false).getAttribute(Constant.PARAMETER_USER)).getRole().equals(Constant.ADMIN_ROLE)) {
+        User user=(User) request.getSession(false).getAttribute(Constant.PARAMETER_USER);
+        if (!(user.getRole().equals(Constant.ADMIN_ROLE)) && user.getContractNumber()!=contractNumber) {
             throw new ServiceException();
         }
         DAOProvider daoProvider = DAOProvider.getInstance();
@@ -129,17 +130,17 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public boolean upBalance(BigDecimal amount,BigDecimal balance, long contractNumber, HttpServletRequest request) throws ServiceException {
+    public boolean upBalance(BigDecimal amount, BigDecimal balance, long contractNumber, HttpServletRequest request) throws ServiceException {
         DAOProvider daoProvider = DAOProvider.getInstance();
         ContractDAO contractDAO = daoProvider.getContractDAO();
         ContractValidator validator = new ContractValidator();
-        if (!validator.validate( amount,request)) {
+        if (!validator.validate(amount, request)) {
             errorMessage = new StringBuilder();
             errorMessage.append(validator.getErrorMessage());
             return false;
         }
         try {
-            if (!contractDAO.upBalance(amount.add(balance),contractNumber)) {
+            if (!contractDAO.upBalance(amount.add(balance), contractNumber)) {
                 errorMessage = new StringBuilder();
                 errorMessage.append(TARIFF_EXIST);
                 return false;
@@ -148,6 +149,57 @@ public class ContractServiceImpl implements ContractService {
             throw new ServiceException();
         }
         return true;
+    }
+
+    @Override
+    public void updateAllBalances(BigDecimal delta, Map<Integer,BigDecimal> priceList) throws ServiceException {
+        DAOProvider daoProvider = DAOProvider.getInstance();
+        ContractDAO contractDAO = daoProvider.getContractDAO();
+        try {
+            contractDAO.updateAllBalances(delta,priceList);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+    @Override
+    public Queue<Long> findTariffUsers(int tariffId) throws ServiceException {
+        DAOProvider daoProvider = DAOProvider.getInstance();
+        ContractDAO contractDAO = daoProvider.getContractDAO();
+        Queue<Long> contractNumbers;
+        try {
+            contractNumbers = contractDAO.findTariffUsers(tariffId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+        return contractNumbers;
+    }
+
+
+    @Override
+    public boolean resetTariffUsers(int tariffId) throws ServiceException {
+        DAOProvider daoProvider = DAOProvider.getInstance();
+        ContractDAO contractDAO = daoProvider.getContractDAO();
+        boolean result;
+        try {
+            result = contractDAO.resetTariffUsers(tariffId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+        return result;
+    }
+
+    @Override
+    public BigDecimal getBalance(long contractNumber) throws ServiceException {
+        DAOProvider daoProvider = DAOProvider.getInstance();
+        ContractDAO contractDAO = daoProvider.getContractDAO();
+        BigDecimal result;
+        try {
+            result = contractDAO.getBalance(contractNumber);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+        return result;
+
     }
 
     public String getErrorMessage() {

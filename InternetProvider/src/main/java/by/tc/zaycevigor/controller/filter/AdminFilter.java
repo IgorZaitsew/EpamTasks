@@ -1,4 +1,5 @@
 package by.tc.zaycevigor.controller.filter;
+
 import by.tc.zaycevigor.entity.User;
 
 import javax.servlet.*;
@@ -21,7 +22,7 @@ public class AdminFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
-        if (!((User)session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
+        if (session.getAttribute(PARAMETER_USER) != null & !((User) session.getAttribute(PARAMETER_USER)).getRole().equals(ADMIN_ROLE)) {
             request.getRequestDispatcher(MAIN_PAGE).forward(request, response);
         } else {
             filterChain.doFilter(request, response);

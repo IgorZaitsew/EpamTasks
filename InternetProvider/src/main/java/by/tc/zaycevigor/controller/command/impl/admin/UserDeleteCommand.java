@@ -35,7 +35,7 @@ public class UserDeleteCommand implements Command {
         ContractService contractService = provider.getContractService();
         try {
             long contractNumber = Long.parseLong(request.getParameter(PARAMETER_CONTRACT_NUMBER));
-            if (clientService.deleteUser(contractNumber) & contractService.deleteContract(contractNumber)) {
+            if (clientService.deleteUser(contractNumber) && contractService.deleteContract(contractNumber)) {
                 User user = (User) session.getAttribute(PARAMETER_USER);
                 if (contractNumber == user.getContractNumber()) {
                     response.sendRedirect(EXIT_COMMAND);
