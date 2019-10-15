@@ -48,6 +48,11 @@
         </form>
     </div>
 </c:if>
+<c:if test="${param.amountError==true}">
+    <div class="alert alert-success">
+        <strong><c:out value="${amount_error}"/></strong>
+    </div>
+</c:if>
 <div class="alert alert-info" role="alert">
     <h4 class="alert-heading">${tariff_title}</h4>
     <hr>
@@ -57,12 +62,5 @@
     <p class="mb-0">${passport_id}${sessionScope.contract.passportId}</p>
     <hr>
 </div>
-<c:if test="${param.amountError==true}">
-    <h3>
-        <div class="alert alert-success">
-            <strong><c:out value="${amount_error}"/></strong>
-        </div>
-    </h3>
-</c:if>
 </body>
 </html>

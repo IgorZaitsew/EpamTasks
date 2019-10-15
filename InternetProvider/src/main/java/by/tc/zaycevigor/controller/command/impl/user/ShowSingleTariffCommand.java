@@ -37,7 +37,7 @@ public class ShowSingleTariffCommand implements Command {
             request.setAttribute(ATTRIBUTE_SINGLE_TARIFF, tariffService.findSingle(criteria));
         } catch (ServiceException e) {
             log.error(e);
-            response.sendRedirect(ERROR_PAGE);
+            response.sendRedirect(GO_TO_ERROR_PAGE);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher(SINGLE_TARIFF_PAGE);
         dispatcher.forward(request, response);

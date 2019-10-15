@@ -23,7 +23,7 @@
         <div class="control-group">
             <label class="control-label"  for="contract_number">${enter_contract}</label>
             <div class="controls">
-                <input class="validate[required,custom[onlyLetter],length[12,12]] text-input" type="text" name="contract_number" id="contract_number"/>
+                <input class="validate[required,custom[onlyLetter],length[12,12]] text-input" type="number" name="contract_number" id="contract_number"/>
             </div>
         </div>
 

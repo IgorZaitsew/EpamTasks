@@ -29,17 +29,16 @@ public class Constant {
 
     public static final String PARAMETER_USER = "user";
     public static final String PARAMETER_CONTRACT = "contract";
-
-    public static final String ATTRIBUTE_ERROR = "error";
+    
     public static final String ATTRIBUTE_TARIFFS = "tariffs";
     public static final String ATTRIBUTE_USERS = "users";
     public static final String ATTRIBUTE_SINGLE_TARIFF = "tariff";
     public static final String ATTRIBUTE_USER = "user";
     public static final String ATTRIBUTE_CONTRACT = "contract";
     public static final String TARIFF_ID = "tariff_id";
-    public static final String CONTRACT_NOT_FOUND = "contractExist=false&";
 
     public static final String ADMIN_ROLE = "admin";
+    public static final String USER_ROLE = "user";
     public static final String PREV_REQUEST = "prev_request";
 
     public static final String CHANGED_TARIFF_COUNT = "changed_tariff_count";
@@ -48,5 +47,7 @@ public class Constant {
     public static final int FIRST_TARIFF_ID = 2;
     public static final double BALANCE_COEF = -0.01;
     public static final String PARAMETER_FIRST_TARIFF_ID = "first_id";
+    public static final String USER_STATUS_CLEAR = "clear";
+    public static final String USER_STATUS_BANNED = "banned";
 }
 

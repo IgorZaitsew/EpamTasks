@@ -19,7 +19,7 @@
 <nav aria-label="Тарифы">
     <c:if test="${sessionScope.user.role=='admin'}">
         <add>
-            <a href="${pageContext.request.contextPath}/controller?command=tariff_add_page"
+            <a href="${pageContext.request.contextPath}/admin?command=tariff_add_page"
                class="btn btn-success btn-sm">${add_text}</a>
         </add>
     </c:if>

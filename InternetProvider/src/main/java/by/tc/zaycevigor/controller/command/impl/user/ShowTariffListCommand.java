@@ -29,8 +29,9 @@ public class ShowTariffListCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = CreatorFullURL.create(request);
-        ServiceProvider provider = ServiceProvider.getInstance();
         request.getSession(true).setAttribute(PREV_REQUEST, url);
+
+        ServiceProvider provider = ServiceProvider.getInstance();
         TariffService tariffService = provider.getInternetService();
         List<Tariff> tariffList;
 
@@ -40,7 +41,7 @@ public class ShowTariffListCommand implements Command {
             request.setAttribute(PARAMETER_FIRST_TARIFF_ID, id);
         } catch (ServiceException e) {
             log.error(((TariffServiceImpl) tariffService).getErrorMessage(), e);
-            response.sendRedirect(ERROR_PAGE);
+            response.sendRedirect(GO_TO_ERROR_PAGE);
             return;
         }
         request.setAttribute(ATTRIBUTE_TARIFFS, tariffList);

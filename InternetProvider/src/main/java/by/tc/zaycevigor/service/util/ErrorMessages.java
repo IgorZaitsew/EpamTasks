@@ -6,6 +6,7 @@ public class ErrorMessages {
 
     public static final String EMAIL_ERROR = "incorrectEmail=true&";
     public static final String CONTRACT_NUMBER_ERROR = "incorrectContractNumber=true&";
+    public static final String CONTRACT_NOT_FOUND = "contractExist=false&";
     public static final String PASSWORD_ERROR = "incorrectPassword=true&";
     public static final String CONTRACT_EXIST = "contractExist=true&";
     public static final String USER_EXIST = "userExist=true&";

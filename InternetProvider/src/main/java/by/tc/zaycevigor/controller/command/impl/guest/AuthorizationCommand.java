@@ -15,6 +15,7 @@ import by.tc.zaycevigor.service.ClientService;
 import by.tc.zaycevigor.service.ContractService;
 import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
+import by.tc.zaycevigor.service.impl.ContractServiceImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -42,7 +43,7 @@ public class AuthorizationCommand implements Command {
         try {
             Contract contract = contractService.contractAuthentification(contractNumber, password, request);
             if (contract == null) {
-                String errorMessage = CONTRACT_NOT_FOUND;
+                String errorMessage = ((ContractServiceImpl)contractService).getErrorMessage();
                 response.sendRedirect(GO_TO_AUTHORISATION_PAGE + errorMessage);
             } else {
                 User user = service.getUser(contractNumber, request);

@@ -30,7 +30,7 @@
 </head>
 <body>
 <add>
-    <a href="${pageContext.request.contextPath}/controller?command=goToContractRegistration"
+    <a href="${pageContext.request.contextPath}/admin?command=goToContractRegistration"
        class="btn btn-success btn-sm">${add_contract_with_user}</a>
 </add>
 <div class="col-md-7">${users_text}</div>

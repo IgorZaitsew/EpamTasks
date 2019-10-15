@@ -15,7 +15,7 @@ public final class JspPageName {
     public static final String USER_REGISTRATION_COMMAND = "/controller?command=userRegistration&";
     public static final String GO_TO_USER_REGISTRATION = "/controller?command=goToUserRegistration&";
 
-    public static final String ERROR_PAGE = "WEB-INF/pages/error/errorPage.jsp";
+    public static final String ERROR_PAGE = "WEB-INF/pages/secure/error/errorPage.jsp";
     public static final String GO_TO_ERROR_PAGE = "/controller?command=goToErrorPage&";
 
     public static final String CONTRACT_REGISTRATION_PAGE = "WEB-INF/pages/contractRegistration.jsp";
@@ -29,7 +29,7 @@ public final class JspPageName {
     public static final String GO_TO_PERSONAL_DATA_PAGE = "/secure?command=goToPersonalDataCommand&";
 
     public static final String TARIFF_PAGE = "WEB-INF/pages/secure/user/tariffList.jsp";
-    public static final String GO_TO_TARIFF_LIST_PAGE = "/secure?command=tariffList&id=0&name=%&min_price=0&max_price=0&min_speed=0&max_speed=0";
+    public static final String GO_TO_TARIFF_LIST_PAGE = "/secure?command=tariffList&id=2";
 
     public static final String SINGLE_TARIFF_PAGE = "WEB-INF/pages/secure/user/singleTariffInfo.jsp";
 

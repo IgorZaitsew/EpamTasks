@@ -3,12 +3,8 @@ package by.tc.zaycevigor.controller.filter;
 import by.tc.zaycevigor.entity.Contract;
 import by.tc.zaycevigor.entity.User;
 import by.tc.zaycevigor.entity.criteria.SearchCriteria;
-import by.tc.zaycevigor.service.ContractService;
 import by.tc.zaycevigor.service.ServiceException;
 import by.tc.zaycevigor.service.ServiceProvider;
-import by.tc.zaycevigor.service.impl.ClientServiceImpl;
-import by.tc.zaycevigor.service.impl.ContractServiceImpl;
-import by.tc.zaycevigor.service.validation.ContractValidator;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import static by.tc.zaycevigor.controller.command.util.Constant.PARAMETER_CONTRACT;
+import static by.tc.zaycevigor.controller.command.util.Constant.*;
+import static by.tc.zaycevigor.controller.command.util.Constant.ADMIN_ROLE;
+import static by.tc.zaycevigor.controller.command.util.Constant.PARAMETER_USER;
+import static by.tc.zaycevigor.controller.command.util.Constant.USER_STATUS_BANNED;
+import static by.tc.zaycevigor.controller.command.util.Constant.USER_STATUS_CLEAR;
 import static by.tc.zaycevigor.dao.util.Constant.*;
 
 public class BalanceFilter implements Filter {
@@ -33,12 +33,10 @@ public class BalanceFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute(PARAMETER_USER);
-
-        if (!user.getRole().equals(ADMIN_ROLE)) {
+        Contract contract = (Contract) session.getAttribute(PARAMETER_CONTRACT);
+        if (!user.getRole().equals(ADMIN_ROLE)&&contract.getTariffId()!=BASIC_TARIFF_ID) {
             try {
-
                 BigDecimal balance = ServiceProvider.getInstance().getContractService().getBalance(user.getContractNumber());
-                Contract contract = (Contract) session.getAttribute(PARAMETER_CONTRACT);
                 SearchCriteria searchCriteria = new SearchCriteria();
                 searchCriteria.setId(contract.getTariffId());
                 BigDecimal tariffCoeff = ServiceProvider.getInstance().getInternetService().

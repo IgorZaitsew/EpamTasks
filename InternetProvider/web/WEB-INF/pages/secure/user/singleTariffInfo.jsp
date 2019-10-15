@@ -23,36 +23,41 @@
 
 
 <div class="alert alert-success" role="alert">
-<h4 class="alert-heading"> ${name} ${requestScope.tariff.name}</h4>
-<hr>
-<p class="mb-0"> ${speed_first} ${requestScope.tariff.speed} ${speed_second}</p>
-<hr>
-<p class="mb-1">${price_first}${requestScope.tariff.price} ${price_second}</p>
+    <h4 class="alert-heading"> ${name} ${requestScope.tariff.name}</h4>
+    <hr>
+    <p class="mb-0"> ${speed_first} ${requestScope.tariff.speed} ${speed_second}</p>
+    <hr>
+    <p class="mb-1">${price_first}${requestScope.tariff.price} ${price_second}</p>
 
-<p class="mb-2">
-<c:if test="${sessionScope.user.role!='admin'}">
-    <c:if test="${requestScope.tariff.id!=sessionScope.contract.tariffId}">
-        <c:if test="${sessionScope.user.status}!='banned'">
-            <hr>
-            <li class="nav-item" style="margin-top: 1px">
-                <a href="${pageContext.request.contextPath}/secure?command=goToChangeTariffPage&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}"
-                   class="btn btn-success btn-sm">${connect}</a>
-            </li>
-        </c:if>
+    <p class="mb-2">
+        <c:if test="${sessionScope.user.role!='admin'}">
+        <c:if test="${requestScope.tariff.id!=sessionScope.contract.tariffId}">
+
+        <c:if test="${sessionScope.user.status!='banned'}">
+    <hr>
+    <li class="nav-item" style="margin-top: 1px">
+        <a href="${pageContext.request.contextPath}/secure?command=goToChangeTariffPage&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}"
+           class="btn btn-success btn-sm">${connect}</a>
+    </li>
+    </c:if>
+    <c:if test="${sessionScope.contract.tariffId!=1}">
         <c:if test="${sessionScope.user.status}=='banned'">
             ${ban_status_msg}
         </c:if>
-        </>
     </c:if>
-    <c:if test="${sessionScope.user.role=='admin'}">
-        <add>
-            <a href="${pageContext.request.contextPath}/admin?command=go_to_tariff_delete&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}"
-               class="btn btn-danger btn-lg">${delete}</a>
-            <a href="${pageContext.request.contextPath}/admin?command=go_to_tariff_readjust&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}&speed=${requestScope.tariff.speed}&price=${requestScope.tariff.price}"
-               class="btn btn-primary btn-lg">${readjust}</a>
-        </add>
-    </c:if>
-    </p>
-    </div>
-    </body>
-    </html>
+</
+>
+</c:if>
+</c:if>
+<c:if test="${sessionScope.user.role=='admin'}">
+    <add>
+        <a href="${pageContext.request.contextPath}/admin?command=go_to_tariff_delete&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}"
+           class="btn btn-danger btn-lg">${delete}</a>
+        <a href="${pageContext.request.contextPath}/admin?command=go_to_tariff_readjust&tariff_id=${requestScope.tariff.id}&name=${requestScope.tariff.name}&speed=${requestScope.tariff.speed}&price=${requestScope.tariff.price}"
+           class="btn btn-primary btn-lg">${readjust}</a>
+    </add>
+</c:if>
+</p>
+</div>
+</body>
+</html>

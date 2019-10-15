@@ -34,6 +34,8 @@ public class UserRegistrationCommand implements Command {
         UserData userData = new UserData();
         userData.setContractNumber((Long) session.getAttribute(PARAMETER_CONTRACT_NUMBER));
         userData.setEmail((String) session.getAttribute(PARAMETER_EMAIL));
+        userData.setRole(USER_ROLE);
+        userData.setStatus(USER_STATUS_CLEAR);
         session.removeAttribute(PARAMETER_CONTRACT_NUMBER);
         session.removeAttribute(PARAMETER_EMAIL);
         try {

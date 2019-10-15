@@ -40,14 +40,17 @@ public class ContractServiceImpl implements ContractService {
         } catch (DaoException e) {
             throw new ServiceException();
         }
-
+        if (contract == null) {
+            errorMessage = new StringBuilder();
+            errorMessage.append(CONTRACT_NOT_FOUND);
+        }
         return contract;
     }
 
     @Override
     public Contract getContract(long contractNumber, HttpServletRequest request) throws ServiceException {
-        User user=(User) request.getSession(false).getAttribute(Constant.PARAMETER_USER);
-        if (!(user.getRole().equals(Constant.ADMIN_ROLE)) && user.getContractNumber()!=contractNumber) {
+        User user = (User) request.getSession(false).getAttribute(Constant.PARAMETER_USER);
+        if (!(user.getRole().equals(Constant.ADMIN_ROLE)) && user.getContractNumber() != contractNumber) {
             throw new ServiceException();
         }
         DAOProvider daoProvider = DAOProvider.getInstance();
@@ -152,15 +155,16 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public void updateAllBalances(BigDecimal delta, Map<Integer,BigDecimal> priceList) throws ServiceException {
+    public void updateAllBalances(BigDecimal delta, Map<Integer, BigDecimal> priceList) throws ServiceException {
         DAOProvider daoProvider = DAOProvider.getInstance();
         ContractDAO contractDAO = daoProvider.getContractDAO();
         try {
-            contractDAO.updateAllBalances(delta,priceList);
+            contractDAO.updateAllBalances(delta, priceList);
         } catch (DaoException e) {
             throw new ServiceException();
         }
     }
+
     @Override
     public Queue<Long> findTariffUsers(int tariffId) throws ServiceException {
         DAOProvider daoProvider = DAOProvider.getInstance();

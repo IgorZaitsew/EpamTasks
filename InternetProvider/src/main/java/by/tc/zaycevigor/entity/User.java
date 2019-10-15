@@ -48,6 +48,8 @@ public class User implements Serializable {
     public User(UserData data) {
         contractNumber = data.getContractNumber();
         email = data.getEmail();
+        status = data.getStatus();
+        role = data.getRole();
     }
 
     public int getId() {
