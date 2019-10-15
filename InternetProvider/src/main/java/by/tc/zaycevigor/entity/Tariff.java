@@ -2,6 +2,7 @@ package by.tc.zaycevigor.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 /**
  * It is used to display tariff data on a page with personal data of a user
  * or on a page with a description of a tariff
@@ -12,9 +13,7 @@ public class Tariff implements Serializable {
     private BigDecimal price;
     private float speed;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;

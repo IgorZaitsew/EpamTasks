@@ -49,5 +49,8 @@ public class Constant {
     public static final String PARAMETER_FIRST_TARIFF_ID = "first_id";
     public static final String USER_STATUS_CLEAR = "clear";
     public static final String USER_STATUS_BANNED = "banned";
+
+    public static final int DEFAULT_SHEDULE_PERIOD=10;
+    public static final int THREAD_CHECK_SLEEP_TIME_MILLIS=500;
 }
 

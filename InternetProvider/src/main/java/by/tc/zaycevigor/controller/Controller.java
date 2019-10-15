@@ -16,7 +16,6 @@ public class Controller extends HttpServlet {
     private static final long serialVersionUID = 7857329058902L;
     private static final String PARAMETER_COMMAND = "command";
     private final CommandProvider provider = new CommandProvider();
-    private ShedulerService service = new ShedulerService();
 
 
     public Controller() {
@@ -24,7 +23,8 @@ public class Controller extends HttpServlet {
     }
 
     {
-        service.shedulerLaunch(new BalanceSheduler());
+        Thread thread = new Thread(new ShedulerService(Thread.currentThread()));
+        thread.start();
     }
 
     @Override
